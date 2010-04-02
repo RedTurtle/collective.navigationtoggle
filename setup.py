@@ -13,6 +13,8 @@ setup(name='collective.navigationtoggle',
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
+        "Programming Language :: JavaScript",
+        "Development Status :: 4 - Beta",
         ],
       keywords='plone jquery navigation javascript',
       author='RedTurtle Technology',
@@ -28,8 +30,6 @@ setup(name='collective.navigationtoggle',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
-      # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,

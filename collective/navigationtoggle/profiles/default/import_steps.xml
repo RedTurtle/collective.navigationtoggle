@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="collective.navigationtoggle" version="201090402-01"
+              handler="collective.navigationtoggle.setuphandlers.setupVarious"
+              title="collective.navigationtoggle - various import steps">
+     Various import steps
+ </import-step>
+</import-steps>
