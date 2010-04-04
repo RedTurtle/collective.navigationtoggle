@@ -8,5 +8,11 @@
         file="collective.navigationtoggle.js"
         />
 
+  <browser:page
+      name="query-subelements"
+      for="*"
+      class=".query_subelements.QuerySubelementsView"
+      permission="zope2.View"
+      />
 
 </configure>
