@@ -5,13 +5,15 @@ version = '0.1.0'
 
 setup(name='collective.navigationtoggle',
       version=version,
-      description="Make possible to expand/collapse a Plone navigation element in an unobtrusive way",
+      description=("Make possible to expand/collapse specific Plone "
+                   "navigation entries in a very unobtrusive way"),
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
+        "Intended Audience :: Developers",
         "Programming Language :: Python",
         "Programming Language :: JavaScript",
         "Development Status :: 4 - Beta",
@@ -27,7 +29,7 @@ setup(name='collective.navigationtoggle',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'Plone',
       ],
       entry_points="""
       [z3c.autoinclude.plugin]
