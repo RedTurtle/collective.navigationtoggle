@@ -6,6 +6,8 @@ jQuery.collective_navigationtoggle = {
 	/**
 	 * Store there all references to navigation elements that must be made
 	 * expansible/collapsible.
+	 * Elements must be HREF trailer, that will be looked inside every A elements of
+	 * navigations.
 	 */
 	toggle_elements: new Array()
 };
@@ -14,6 +16,7 @@ jQuery.collective_navigationtoggle = {
 jq(document).ready(function() {
 
 	var call_context = jq("head base").attr('href');
+	if (!call_context.charAt(call_context.length-1)!='/') call_context=call_context+'/';
 
 	/**
 	 * Generate a new navigation element
@@ -45,11 +48,15 @@ jq(document).ready(function() {
 	}
 	
 	jq.each(jq.collective_navigationtoggle.toggle_elements, function(index, value) {
-		jq(".portletNavigationTree a[href$="+value+"]").live("click", function(event) {
-			var main_elem = jq(this).parents("li:first");
-			var ul_model = main_elem.parents('ul:first').clone().addClass('cnavGenerated').empty();
-			var li_model = main_elem.clone().removeClass('cnavClosed').empty();
-			if (!main_elem.hasClass('cnavOpen')) main_elem.addClass('cnavClosed');
+		var control = jq(".portletNavigationTree a[href$="+value+"]");
+		var main_elem = control.parents("li:first");
+		var ul_model = main_elem.parents('ul:first').clone().addClass('cnavGenerated').empty();
+		var li_model = main_elem.clone().empty();
+		// Check the right CSS class to be given to the main element
+		if (main_elem.children(":last").is("ul"))
+			main_elem.addClass('cnavOpen');
+		else main_elem.addClass('cnavClosed');
+		control.click(function(event) {
 			if (main_elem.hasClass('cnavClosed')) {
 				new_ul = ul_model.clone();
 				main_elem.append(new_ul).removeClass('cnavClosed').addClass('cnavOpen');
@@ -74,5 +81,5 @@ jq(document).ready(function() {
 	});
 })
 
-jQuery.collective_navigationtoggle['toggle_elements'].push("/site/new-area");
-jQuery.collective_navigationtoggle['toggle_elements'].push("/site/new-area/abc");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/test/folder-a");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/test/folder-a/folder-a1");
