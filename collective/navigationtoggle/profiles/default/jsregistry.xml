@@ -6,6 +6,7 @@
              cookable="True"
              enabled="True"
              id="++resource++collective.navigationtoggle.js"
+			 insert-after="jquery-integration.js"
              inline="False"/>
 
 </object>
