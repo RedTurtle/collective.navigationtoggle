@@ -38,11 +38,13 @@ jq(document).ready(function() {
 	 * @param {Object} data structure to be used for filling the element
 	 * @param {jQuery} wrapper a wrapper element to be used as container
 	 * @param {boolean} withImage include or not the icon image
+	 * @param {boolean} wrapDiv wrap all generated HTML in a DIV (Plone 3.5/4.0 difference)
 	 */
-	var makeSubelement = function(data, wrapper, withImage) {
-		return wrapper.append('<div><a href="'+data.url+'" title="'+data.description+'">' +
-					(withImage?'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>':'') +
-					'<span>'+data.title+'</span></a></div>');
+	var makeSubelement = function(data, wrapper, withImage, wrapDiv) {
+		var ehtml = '<a href="'+data.url+'" title="'+data.description+'">' +
+				(withImage?'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>':'') +
+				'<span>'+data.title+'</span></a>';
+		return wrapper.append(wrapDiv?'<div>'+ehtml+'</div>':ehtml);
 	}
 	
 	/**
@@ -73,13 +75,14 @@ jq(document).ready(function() {
 		var control = jq(".portletNavigationTree a[href$="+value+"]");
 		if (control.length==0) return;
 		var main_elem = control.parents("li:first");
+		var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
 		var ul_model = main_elem.parents('ul:first').clone().addClass('cnavGenerated').empty();
 		var li_model = main_elem.clone().empty();
 		// Check the right CSS class to be given to the main element
 		if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
 		else main_elem.addClass('cnavClosed');
 		control.bind("click",
-				{main_elem: main_elem, ul_model:ul_model, li_model:li_model, control:control},
+				{main_elem: main_elem, ul_model:ul_model, li_model:li_model, control:control, wrapDiv:wrapDiv},
 				checkClick);
 	};
 	
@@ -88,9 +91,10 @@ jq(document).ready(function() {
 	 * @param {Event} event jQuery event object, containing the data structure
 	 */
 	var checkClick = function(event) {
-		main_elem = event.data.main_elem;
-		ul_model = event.data.ul_model;
-		li_model = event.data.li_model;
+		var main_elem = event.data.main_elem;
+		var ul_model = event.data.ul_model;
+		var li_model = event.data.li_model;
+		var wrapDiv = event.data.wrapDiv;
 		control = event.data.control;
 		if (main_elem.hasClass('cnavClosed')) {
 			main_elem.removeClass('cnavClosed').addClass('cnavOpen');
@@ -109,7 +113,7 @@ jq(document).ready(function() {
 						 'foo': loading_time}, // for cache prevention management
 						function(data) {
 							jq.each(data, function(index, value) {
-								new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0));
+								new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0, wrapDiv));
 							});
 							// If no element returned from the subtree, perform normal browser action
 							if (jq('li', new_ul).length==0)
