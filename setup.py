@@ -30,6 +30,7 @@ setup(name='collective.navigationtoggle',
       install_requires=[
           'setuptools',
           'Plone',
+          'simplejson',
       ],
       entry_points="""
       [z3c.autoinclude.plugin]

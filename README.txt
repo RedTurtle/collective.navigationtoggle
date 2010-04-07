@@ -106,8 +106,33 @@ is done cloning existings node from the same navigation portlet) but some assump
 TODO
 ====
 
-* Cache already queryed subtrees (to prevent useless AJAX call if you continue to click on the same element)
 * Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration.
+
+Versions/Dependencies
+=====================
+
+Browsers
+--------
+
+* Firefox 3.6.3
+* Google Chrome 5.0beta
+* Opera 10.10
+* Safari 4.0.5
+* Internet Explorer 8.0
+
+Plone
+-----
+
+* Plone 3.3.5
+* Plone 4.0b
+
+Dependencies
+------------
+
+* `simplejson`__ (if using Plone 3)
+* jQuery 1.3+
+
+__ http://pypi.python.org/pypi/simplejson
 
 Other products
 ==============

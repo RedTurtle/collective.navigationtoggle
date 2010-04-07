@@ -15,7 +15,6 @@ jQuery.collective_navigationtoggle = {
 	toggle_elements: new Array()
 };
 
-
 jq(document).ready(function() {
 
 	/**

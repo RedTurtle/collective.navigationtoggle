@@ -9,6 +9,7 @@ Changelog
 * management of browser cache (mainly Internet Explorer) [keul]
 * dot not display always the content image icon (sometimes users don't see them in navigation) [keul]
 * now every element node cache its subtree so AJAX call is performed only once [keul]
+* added dependency on simplejson for formatting server responses [keul]
 
 0.1.0 (2010-04-06)
 ------------------

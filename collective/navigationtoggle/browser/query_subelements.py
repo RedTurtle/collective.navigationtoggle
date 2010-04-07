@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+try:
+    # python2.6
+    import json
+except ImportError:
+    # python2.4
+    import simplejson as json
+
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 
@@ -47,4 +54,4 @@ class QuerySubelementsView(BrowserView):
                                  'description': x.Description,
                                  })
 
-        return repr(navElems)
+        return json.dumps(navElems)
