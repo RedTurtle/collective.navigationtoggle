@@ -146,6 +146,6 @@ jq(document).ready(function() {
 	
 })
 
-jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
-jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a/folder-a1");
-jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-e");
+//jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
+//jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a/folder-a1");
+//jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-e");

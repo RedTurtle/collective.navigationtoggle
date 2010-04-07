@@ -1,7 +1,7 @@
 Documentation
 =============
 
-The target of this product is to make possible an expand/collapse feature in Plone navigation(s)
+Target of this product is to make possible an expand/collapse feature in Plone navigation(s)
 portlet without any modification to the navigation code itself, or any needs to override its features.
 
 This product *is not* a new navigation portlet, is just a Javascript add-on that rely on native Plone's
@@ -13,7 +13,7 @@ When I will need this?
 ----------------------
 
 The collective.navigationtoggle is useful when your Plone site needs (not much) special handling of
-navigation elements. Sometimes your site structure is done like this::
+navigation elements. Sometimes your site structure is someway like this::
 
     ROOT
     |
@@ -37,13 +37,16 @@ The *NotImportantFolder* itself is not seen as a real content.
 What will change
 ----------------
 
-Some special navigation links will no more move the user the the target section but simply shows in the
-navigation itself all subsections (so the navigation seems like the user really moved to the target
-folder).
+Make possible that special navigation links will no more move the user the the target section but simply
+shows in the navigation itself all subsections (so the navigation seems like the user really moved to
+the target folder).
 A second click will collapse the section.
 Default page in a folder and elements marked with "Exclude from navigation" are skipped.
 
 The script try to simulate best at possible a normal portlet navigation behaviour.
+
+The code keeps in mind *graceful degradation*. Browser without javascript enabled will simply use basic
+Plone navigation features.
 
 How to use
 ----------
@@ -58,7 +61,7 @@ You must add additional Javascript source(s) like this::
 Where "*/foo1/foo2*" can be an existing suffix of an *href* attribute for a link. Only link inside
 navigation portlet are checked (looking for "*portletNavigationTree*" class).
 
-So, a link like this (*if* inside a navigation portlet) is "hit" and macically handled::
+So, a link like this (*if* inside a navigation portlet) is "hit" and magically handled::
 
     <a href="http://plonehost/foo/foo1/foo2">
 
@@ -77,7 +80,8 @@ Please, do not include the "/plonesiteid" part in your path or you will have pro
 Apache in front of Zope.
 
 Whatever configuration you wrote, you **must** include you Javascript(s) file inside *portal_javascript*
-tool *after* the *collective.navigationtoggle.js*::
+tool *after* the *collective.navigationtoggle.js*.
+Here an example of a Generic Setup import steps for your Javascript::
 
     <javascript cacheable="True"
              compression="safe"
@@ -123,14 +127,14 @@ Browsers
 Plone
 -----
 
-* Plone 3.3.5
-* Plone 4.0b
+* Plone 3.3
+* Plone 4.0 (visual result with Sunburst Theme is not perfect)
 
 Dependencies
 ------------
 
 * `simplejson`__ (if using Plone 3)
-* jQuery 1.3+
+* jQuery 1.3 or better
 
 __ http://pypi.python.org/pypi/simplejson
 

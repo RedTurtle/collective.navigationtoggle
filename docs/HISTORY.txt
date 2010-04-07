@@ -1,15 +1,16 @@
 Changelog
 =========
 
-0.2.0 (2010-xx-xx)
+0.2.0 (2010-04-08)
 ------------------
 
 * query_subelement view documentation was incomplete [keul]
 * when querying empty folder, do not prevent browser default action [keul]
-* management of browser cache (mainly Internet Explorer) [keul]
+* prevent browser cache (mainly know Internet Explorer problem) [keul]
 * dot not display always the content image icon (sometimes users don't see them in navigation) [keul]
 * now every element node cache its subtree so AJAX call is performed only once [keul]
 * added dependency on simplejson for formatting server responses [keul]
+* added minimal Plone 4.0 compatibility (UI result is not perfect) [keul]
 
 0.1.0 (2010-04-06)
 ------------------
