@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1.0'
+version = '0.2.0'
 
 setup(name='collective.navigationtoggle',
       version=version,
@@ -16,7 +16,7 @@ setup(name='collective.navigationtoggle',
         "Intended Audience :: Developers",
         "Programming Language :: Python",
         "Programming Language :: JavaScript",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         ],
       keywords='plone jquery navigation javascript',
       author='RedTurtle Technology',

@@ -32,14 +32,17 @@ jq(document).ready(function() {
 		call_context=call_context.substring(0,call_context.indexOf('/portal_factory')+1);
 	}
 
+	var loading_time = new Date().getTime();
+	
 	/**
 	 * Generate a new navigation element
 	 * @param {Object} data structure to be used for filling the element
 	 * @param {jQuery} wrapper a wrapper element to be used as container
+	 * @param {boolean} withImage include or not the icon image
 	 */
-	var makeSubelement = function(data, wrapper) {
+	var makeSubelement = function(data, wrapper, withImage) {
 		return wrapper.append('<div><a href="'+data.url+'" title="'+data.description+'">' +
-					'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>' +
+					(withImage?'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>':'') +
 					'<span>'+data.title+'</span></a></div>');
 	}
 	
@@ -77,7 +80,8 @@ jq(document).ready(function() {
 		// Check the right CSS class to be given to the main element
 		if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
 		else main_elem.addClass('cnavClosed');
-		control.bind("click", {main_elem: main_elem, ul_model:ul_model, li_model:li_model},
+		control.bind("click",
+				{main_elem: main_elem, ul_model:ul_model, li_model:li_model, control:control},
 				checkClick);
 	};
 	
@@ -89,18 +93,23 @@ jq(document).ready(function() {
 		main_elem = event.data.main_elem;
 		ul_model = event.data.ul_model;
 		li_model = event.data.li_model;
+		control = event.data.control;
 		if (main_elem.hasClass('cnavClosed')) {
 			new_ul = ul_model.clone();
 			main_elem.append(new_ul).removeClass('cnavClosed').addClass('cnavOpen');
 			riseNavigatorClass(new_ul);
 			// Fill the new element
 			jq.getJSON(call_context+'@@query-subelements',
-					{'path': jq('a', main_elem).attr('href')},
+					{'path': jq('a', main_elem).attr('href'),
+					 'foo': loading_time}, // for cache prevention management
 					function(data) {
 						jq.each(data, function(index, value) {
-							new_ul.append(makeSubelement(value, li_model.clone()));
+							new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0));
 						});
-						// Now we simulate here the jQuery.live feature...
+						// If no element returned from the subtree, perform normal browser action
+						if (jq('li', new_ul).length==0)
+							window.location.href = control.attr('href');
+						// Now we simulate here the jQuery.live() feature...
 						checkDOM();
 					}
 			);
@@ -115,7 +124,7 @@ jq(document).ready(function() {
 	
 	/**
 	 * Simple function that perform the whole check for every possible navigation elements
-	 * that needs toggling feature.
+	 * needing toggle feature.
 	 */
 	var checkDOM = function() {
 		jq.each(jq.collective_navigationtoggle.toggle_elements, makeDynamicElements);
@@ -124,5 +133,6 @@ jq(document).ready(function() {
 	
 })
 
-// jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
-// jQuery.collective_navigationtoggle['toggle_elements'].push("/test/folder-a/folder-a1");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a/folder-a1");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-e");

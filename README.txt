@@ -38,8 +38,10 @@ What will change
 ----------------
 
 Some special navigation links will no more move the user the the target section but simply shows in the
-navigation itself all subsections. A second click will close this.
+navigation itself all subsections. A second click will close it.
 Default page in a folder and elements marked with "Exclude from navigation" are skipped.
+
+The script try to simulate best at possible a normal navigation behaviour.
 
 How to use
 ----------

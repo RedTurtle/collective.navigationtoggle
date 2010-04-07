@@ -8,13 +8,21 @@ class QuerySubelementsView(BrowserView):
     
     This will generate a JSON data like this:
     
-    {...}
+    {'title': title of the content,
+     'url': URL of the content,
+     'type': Portal type of the content,
+     'icon': URL for the content icon,
+     'description': Description of the content,
+     }
     """
     
     def __call__(self, *args, **kwargs):
         request = self.request
         context = self.context
-        request.response.setHeader('Content-Type','application/json')
+        response = request.response
+        response.setHeader('Content-Type','application/json')
+        response.addHeader("Cache-Control", "no-cache")
+        response.addHeader("Pragma", "no-cache")
         portal_url = getToolByName(context, 'portal_url')
         catalog = getToolByName(context, 'portal_catalog')
         portal = portal_url.getPortalObject()
