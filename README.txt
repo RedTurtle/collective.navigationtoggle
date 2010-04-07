@@ -38,10 +38,12 @@ What will change
 ----------------
 
 Some special navigation links will no more move the user the the target section but simply shows in the
-navigation itself all subsections. A second click will close it.
+navigation itself all subsections (so the navigation seems like the user really moved to the target
+folder).
+A second click will collapse the section.
 Default page in a folder and elements marked with "Exclude from navigation" are skipped.
 
-The script try to simulate best at possible a normal navigation behaviour.
+The script try to simulate best at possible a normal portlet navigation behaviour.
 
 How to use
 ----------

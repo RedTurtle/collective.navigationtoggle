@@ -74,7 +74,6 @@ jq(document).ready(function() {
 		var control = jq(".portletNavigationTree a[href$="+value+"]");
 		if (control.length==0) return;
 		var main_elem = control.parents("li:first");
-		if (main_elem.hasClass('cnavClosed') || main_elem.hasClass('cnavOpen')) return;
 		var ul_model = main_elem.parents('ul:first').clone().addClass('cnavGenerated').empty();
 		var li_model = main_elem.clone().empty();
 		// Check the right CSS class to be given to the main element
@@ -95,25 +94,36 @@ jq(document).ready(function() {
 		li_model = event.data.li_model;
 		control = event.data.control;
 		if (main_elem.hasClass('cnavClosed')) {
-			new_ul = ul_model.clone();
-			main_elem.append(new_ul).removeClass('cnavClosed').addClass('cnavOpen');
-			riseNavigatorClass(new_ul);
-			// Fill the new element
-			jq.getJSON(call_context+'@@query-subelements',
-					{'path': jq('a', main_elem).attr('href'),
-					 'foo': loading_time}, // for cache prevention management
-					function(data) {
-						jq.each(data, function(index, value) {
-							new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0));
-						});
-						// If no element returned from the subtree, perform normal browser action
-						if (jq('li', new_ul).length==0)
-							window.location.href = control.attr('href');
-						// Now we simulate here the jQuery.live() feature...
-						checkDOM();
-					}
-			);
-			event.preventDefault();
+			main_elem.removeClass('cnavClosed').addClass('cnavOpen');
+			// check if the subtree is in the cache
+			if (main_elem.data('cnavCache')) {
+				main_elem.append(main_elem.data('cnavCache'));
+				checkDOM();
+			}
+			else {
+				new_ul = ul_model.clone();
+				main_elem.append(new_ul);
+				riseNavigatorClass(new_ul);
+				// Fill the new element
+				jq.getJSON(call_context+'@@query-subelements',
+						{'path': jq('a', main_elem).attr('href'),
+						 'foo': loading_time}, // for cache prevention management
+						function(data) {
+							jq.each(data, function(index, value) {
+								new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0));
+							});
+							// If no element returned from the subtree, perform normal browser action
+							if (jq('li', new_ul).length==0)
+								window.location.href = control.attr('href');
+							// Now we simulate here the jQuery.live() feature...
+							checkDOM();
+							// Caching for later clicks
+							// As far as I'm not sure to rely on jQuery 1.4, I can use the clone() withDataAndEvents
+							main_elem.data('cnavCache', main_elem.children(":last").clone(false));
+						}
+				);
+			}
+			event.preventDefault();				
 		}
 		else if (main_elem.hasClass('cnavOpen')) {
 			main_elem.children(":last").remove().end()
