@@ -130,7 +130,10 @@ Simply put it to 0 again (the default) to disable effect.
 TODO
 ====
 
-* Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration.
+* Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration
+* Need more for being useful on Plone 4 Sunburst Theme
+* A clean uninstall GS step
+* Make this a jQuery plugin
 
 Versions/Dependencies
 =====================
@@ -148,7 +151,7 @@ Plone
 -----
 
 * Plone 3.3
-* Plone 4.0 (visual result with Sunburst Theme is not perfect)
+* Plone 4.0 (visual result with Sunburst Theme is not the best)
 
 Dependencies
 ------------

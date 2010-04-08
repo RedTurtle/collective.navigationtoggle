@@ -5,10 +5,10 @@ Changelog
 ------------------
 
 * query_subelement view documentation was incomplete [keul]
-* when querying empty folder, do not prevent browser default action [keul]
+* when querying empty folder, do not prevent (in facts: simulate) browser default action [keul]
 * prevent browser cache (mainly know Internet Explorer problem) [keul]
-* dot not display always the content image icon (sometimes users don't see them in navigation) [keul]
-* now elements node cache its subtree, so AJAX call is performed only once [keul]
+* dot not always display the content's image icon (sometimes users don't see them in navigation) [keul]
+* now every element node cache its subtree, so AJAX call is performed only once (can be disabled) [keul]
 * added dependency on simplejson for formatting server responses [keul]
 * added minimal Plone 4.0 compatibility (UI result is not perfect) [keul]
 * added a simple slide up/down effect (disabled by default) [keul]

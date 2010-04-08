@@ -86,9 +86,12 @@ jq(document).ready(function() {
 		var control = jq(".portletNavigationTree a[href$="+value+"]");
 		if (control.length==0) return;
 		var main_elem = control.parents("li:first");
+		if (main_elem.data("cnavMarker")) return;
+		// mark this element to prevent further call to makeDynamicElements
+		main_elem.data('cnavMarker', true);
 		var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
-		var ul_model = main_elem.parents('ul:first').clone().addClass('cnavGenerated').empty();
-		var li_model = main_elem.clone().empty();
+		var ul_model = main_elem.parents('ul:first').clone(false).addClass('cnavGenerated').empty();
+		var li_model = main_elem.clone(false).empty();
 		// Check the right CSS class to be given to the main element
 		if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
 		else main_elem.addClass('cnavClosed');
@@ -135,9 +138,11 @@ jq(document).ready(function() {
 								new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0, wrapDiv));
 							});
 							// If no element returned from the subtree, perform normal browser action
-							if (jq('li', new_ul).length==0)
+							if (jq('li', new_ul).length == 0) {
 								window.location.href = control.attr('href');
-							// Now we simulate here the jQuery.live() feature...
+								return;
+							}
+							// I call this to obtain something like jQuery.live() feature...
 							checkDOM();
 							// Caching for later clicks
 							if (cache)
@@ -181,4 +186,4 @@ jQuery.collective_navigationtoggle.toggle_elements.push("/folder-a");
 jQuery.collective_navigationtoggle.toggle_elements.push("/folder-a/folder-a1");
 jQuery.collective_navigationtoggle.toggle_elements.push("/folder-e");
 jQuery.collective_navigationtoggle.slide_animation = 300;
-jQuery.collective_navigationtoggle.cache = false;
+// jQuery.collective_navigationtoggle.cache = false;

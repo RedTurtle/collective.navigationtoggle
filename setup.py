@@ -29,7 +29,7 @@ setup(name='collective.navigationtoggle',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Plone',
+          #'Plone',
           'simplejson',
       ],
       entry_points="""
