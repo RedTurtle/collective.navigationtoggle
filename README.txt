@@ -131,9 +131,9 @@ TODO
 ====
 
 * Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration
-* Need more for being useful on Plone 4 Sunburst Theme
+* Need more love for being more compatible with Plone 4 Sunburst Theme
 * A clean uninstall GS step
-* Make this a jQuery plugin
+* Make all this a jQuery plugin
 
 Versions/Dependencies
 =====================
