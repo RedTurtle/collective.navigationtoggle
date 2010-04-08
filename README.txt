@@ -58,7 +58,7 @@ script to use and configure it.
 
 You must add additional Javascript source(s) like this::
 
-    jQuery.collective_navigationtoggle['toggle_elements'].push("/foo1/foo2");
+    jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2");
 
 Where "*/foo1/foo2*" can be an existing suffix of an *href* attribute for a link. Only link inside
 navigation portlet are checked (looking for "*portletNavigationTree*" class).
@@ -71,8 +71,8 @@ This because the *href* ends with one of the elements found inside *toggle_eleme
 
 Another possible configuration::
 
-    jQuery.collective_navigationtoggle['toggle_elements'].push("/foo1/foo2");
-    jQuery.collective_navigationtoggle['toggle_elements'].push("/foo1/foo2/foo3");
+    jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2");
+    jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2/foo3");
 
 This time the "*foo3*" folder is inside the "*foo2*" and can be possible that the last link is not available
 at load page time (because for exampe we are still in the Plone root). However collective.navigationtoggle
@@ -117,7 +117,7 @@ default.
 
 To enable it you must change another plugin var::
 
-    jQuery.collective_navigationtoggle['slide_animation'] = 300;
+    jQuery.collective_navigationtoggle.slide_animation = 300;
 
 The value you put there is the time (in millisec) used for the `slideDown`__ and `slideUp`__ jQuery's
 effect.
