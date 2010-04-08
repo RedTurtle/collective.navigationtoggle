@@ -12,7 +12,12 @@ jQuery.collective_navigationtoggle = {
 	 * Elements must be HREF trailer, that will be looked inside every A elements of
 	 * navigations.
 	 */
-	toggle_elements: new Array()
+	toggle_elements: new Array(),
+	/**
+	 * Duration in millisecs for control animation slideUp/slideDown effects when
+	 * expand/collapse navigation elements. Default to 0 (animation disabled).
+	 */
+	slide_animation: 0
 };
 
 jq(document).ready(function() {
@@ -91,20 +96,26 @@ jq(document).ready(function() {
 	 * @param {Event} event jQuery event object, containing the data structure
 	 */
 	var checkClick = function(event) {
+		// Load data from event
 		var main_elem = event.data.main_elem;
 		var ul_model = event.data.ul_model;
 		var li_model = event.data.li_model;
 		var wrapDiv = event.data.wrapDiv;
-		control = event.data.control;
+		var control = event.data.control;
 		if (main_elem.hasClass('cnavClosed')) {
 			main_elem.removeClass('cnavClosed').addClass('cnavOpen');
 			// check if the subtree is in the cache
 			if (main_elem.data('cnavCache')) {
-				main_elem.append(main_elem.data('cnavCache'));
+				var new_ul = main_elem.data('cnavCache');
+				main_elem.append(new_ul);
 				checkDOM();
+				if (jq.collective_navigationtoggle.slide_animation>0)
+					new_ul.slideDown(jq.collective_navigationtoggle.slide_animation);
+				else
+					new_ul.show();
 			}
 			else {
-				new_ul = ul_model.clone();
+				var new_ul = ul_model.clone().hide();
 				main_elem.append(new_ul);
 				riseNavigatorClass(new_ul);
 				// Fill the new element
@@ -122,15 +133,26 @@ jq(document).ready(function() {
 							checkDOM();
 							// Caching for later clicks
 							// As far as I'm not sure to rely on jQuery 1.4, I can use the clone() withDataAndEvents
-							main_elem.data('cnavCache', main_elem.children(":last").clone(false));
+							main_elem.data('cnavCache', new_ul.clone(false));
+							// effects?
+							if (jq.collective_navigationtoggle.slide_animation>0)
+								new_ul.slideDown(jq.collective_navigationtoggle.slide_animation);
+							else
+								new_ul.show();
 						}
 				);
 			}
 			event.preventDefault();				
 		}
 		else if (main_elem.hasClass('cnavOpen')) {
-			main_elem.children(":last").remove().end()
-					.removeClass('cnavOpen').addClass('cnavClosed');
+			var new_ul = main_elem.children(":last");
+			if (jq.collective_navigationtoggle.slide_animation>0)
+				new_ul.slideUp(jq.collective_navigationtoggle.slide_animation, function() {
+					jq(this).remove();
+				});
+			else
+				new_ul.remove();
+			main_elem.removeClass('cnavOpen').addClass('cnavClosed');
 			event.preventDefault();
 		};
 	};
@@ -146,6 +168,7 @@ jq(document).ready(function() {
 	
 })
 
-//jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
-//jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a/folder-a1");
-//jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-e");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a/folder-a1");
+jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-e");
+jQuery.collective_navigationtoggle['slide_animation'] = 300;

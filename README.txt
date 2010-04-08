@@ -1,3 +1,5 @@
+.. contents:: **Table of contents**
+
 Documentation
 =============
 
@@ -106,6 +108,24 @@ Plone theme.
 
 This products *may* also works on non-standard navigation HTML structure (as the generations on subelement
 is done cloning existings node from the same navigation portlet) but some assumptions are done. 
+
+Effects
+-------
+
+The product can enable for you a graphical effect when you expand/collapse items. This is disabled by
+default.
+
+To enable it you must change another plugin var::
+
+    jQuery.collective_navigationtoggle['slide_animation'] = 300;
+
+The value you put there is the time (in millisec) used for the `slideDown`__ and `slideUp`__ jQuery's
+effect.
+
+__ http://api.jquery.com/slideDown/
+__ http://api.jquery.com/slideUp/
+
+Simply put it to 0 again (the default) to disable effect.
 
 TODO
 ====
