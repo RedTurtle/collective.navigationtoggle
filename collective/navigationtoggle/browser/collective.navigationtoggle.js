@@ -13,11 +13,17 @@ jQuery.collective_navigationtoggle = {
 	 * navigations.
 	 */
 	toggle_elements: new Array(),
+	
 	/**
 	 * Duration in millisecs for control animation slideUp/slideDown effects when
 	 * expand/collapse navigation elements. Default to 0 (animation disabled).
 	 */
-	slide_animation: 0
+	slide_animation: 0,
+	
+	/**
+	 * Flag for enable or disable client side cache of HttpXmlRequest
+	 */
+	cache: true
 };
 
 jq(document).ready(function() {
@@ -102,10 +108,12 @@ jq(document).ready(function() {
 		var li_model = event.data.li_model;
 		var wrapDiv = event.data.wrapDiv;
 		var control = event.data.control;
+		// cache?
+		var cache = jq.collective_navigationtoggle.cache;
 		if (main_elem.hasClass('cnavClosed')) {
 			main_elem.removeClass('cnavClosed').addClass('cnavOpen');
 			// check if the subtree is in the cache
-			if (main_elem.data('cnavCache')) {
+			if (cache && main_elem.data('cnavCache')) {
 				var new_ul = main_elem.data('cnavCache');
 				main_elem.append(new_ul);
 				checkDOM();
@@ -132,8 +140,9 @@ jq(document).ready(function() {
 							// Now we simulate here the jQuery.live() feature...
 							checkDOM();
 							// Caching for later clicks
-							// As far as I'm not sure to rely on jQuery 1.4, I can use the clone() withDataAndEvents
-							main_elem.data('cnavCache', new_ul.clone(false));
+							if (cache)
+								// As far as I'm not sure to rely on jQuery 1.4, I can't use the clone() withDataAndEvents
+								main_elem.data('cnavCache', new_ul.clone(false));
 							// effects?
 							if (jq.collective_navigationtoggle.slide_animation>0)
 								new_ul.slideDown(jq.collective_navigationtoggle.slide_animation);
@@ -148,7 +157,7 @@ jq(document).ready(function() {
 			var new_ul = main_elem.children(":last");
 			if (jq.collective_navigationtoggle.slide_animation>0)
 				new_ul.slideUp(jq.collective_navigationtoggle.slide_animation, function() {
-					jq(this).remove();
+					new_ul.remove();
 				});
 			else
 				new_ul.remove();
@@ -168,7 +177,8 @@ jq(document).ready(function() {
 	
 })
 
-jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a");
-jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-a/folder-a1");
-jQuery.collective_navigationtoggle['toggle_elements'].push("/folder-e");
-jQuery.collective_navigationtoggle['slide_animation'] = 300;
+jQuery.collective_navigationtoggle.toggle_elements.push("/folder-a");
+jQuery.collective_navigationtoggle.toggle_elements.push("/folder-a/folder-a1");
+jQuery.collective_navigationtoggle.toggle_elements.push("/folder-e");
+jQuery.collective_navigationtoggle.slide_animation = 300;
+jQuery.collective_navigationtoggle.cache = false;
