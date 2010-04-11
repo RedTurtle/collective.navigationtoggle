@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2.0 (2010-04-08)
+0.2.0 (2010-04-11)
 ------------------
 
 * query_subelement view documentation was incomplete [keul]
