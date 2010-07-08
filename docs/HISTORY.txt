@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.2.1 (2010-xx-xx)
+------------------
+
+* Fixed a bug when fast double-click on opened elements (close `#1`__) [keul]
+
+__ http://plone.org/products/collective.navigationtoggle/issues/1
+
 0.2.0 (2010-04-11)
 ------------------
 
