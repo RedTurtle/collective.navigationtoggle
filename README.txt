@@ -39,10 +39,11 @@ The *NotImportantFolder* itself is not seen as a real content.
 What will change
 ----------------
 
-Make possible that special navigation links will no more move the user the the target section but simply
+Make possible that special navigation links will no more move the user to the target section but simply
 shows in the navigation itself all subsections (so the navigation seems like the user really moved to
 the target folder).
 A second click will collapse the section.
+
 Default page in a folder and elements marked with "Exclude from navigation" are skipped.
 
 The script try to simulate best at possible a normal portlet navigation behaviour.
@@ -103,7 +104,7 @@ Class "*cnavClosed*" is added when a special navigation elements is shown on the
 a subtree.
 When a subsection is open, the class "*cnavOpen*" is added to the same element.
 
-You can (but this product will don't) rely on those classes to give additional styles effects in your
+You can (but this product doesn't) rely on those classes to give additional styles effects in your
 Plone theme.
 
 This products *may* also works on non-standard navigation HTML structure (as the generations on subelement
@@ -131,7 +132,6 @@ TODO
 ====
 
 * Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration
-* Need more love for being more compatible with Plone 4 Sunburst Theme
 * A clean uninstall GS step
 * Make all this a jQuery plugin
 
@@ -141,17 +141,17 @@ Versions/Dependencies
 Browsers
 --------
 
-* Firefox 3.6.3
-* Google Chrome 5.0beta
-* Opera 10.10
-* Safari 4.0.5
+* Firefox 3.6.6
+* Google Chrome 5.0
+* Opera 10.60
+* Safari 5.0
 * Internet Explorer 8.0
 
 Plone
 -----
 
-* Plone 3.3
-* Plone 4.0 (visual result with Sunburst Theme is not the best)
+* Plone 3.3 (classic Plone theme)
+* Plone 4.0 (classic Plone theme and Sunburst)
 
 Dependencies
 ------------
@@ -164,7 +164,7 @@ __ http://pypi.python.org/pypi/simplejson
 Other products
 ==============
 
-If you need a complete expand/collapse navigation feature this product can be not enough; so take a
+If you need a complete expand/collapse navigation feature this product is not for you; so take a
 look to `collective.portlet.explore`__.
 
 __ http://pypi.python.org/pypi/collective.portlet.explore
@@ -189,6 +189,4 @@ This product was developed by RedTurtle Technology team.
 .. image:: http://www.redturtle.net/redturtle_banner.png
    :alt: RedTurtle Technology Site
    :target: http://www.redturtle.net/
-
-
 

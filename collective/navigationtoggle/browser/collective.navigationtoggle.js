@@ -54,12 +54,12 @@ jq(document).ready(function() {
 	 * @param {String} contentTypeClass name on the CSS class related to item content type
 	 */
 	var makeSubelement = function(data, wrapper, withImage, wrapDiv, reviewStateClass, contentTypeClass) {
-		var ehtml = '<a href="'+data.url+'" title="'+data.description+'">' +
+		var newE = jq('<a href="'+data.url+'" title="'+data.description+'">' +
 				(withImage?'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>':'') +
-				'<span>'+data.title+'</span></a>';
-		if (reviewStateClass) ehtml.addClass("state-"+data.review_state_normalized);
-		if (contentTypeClass) ehtml.addClass("contenttype-"+data.type_normalized);
-		return wrapper.append(wrapDiv?'<div>'+ehtml+'</div>':ehtml);
+				'<span>'+data.title+'</span></a>');
+		if (reviewStateClass) newE.addClass("state-"+data.review_state_normalized);
+		if (contentTypeClass) newE.addClass("contenttype-"+data.type_normalized);
+		return wrapper.append(wrapDiv?jq('<div></div>').append(newE):newE);
 	}
 	
 	/**
@@ -95,17 +95,18 @@ jq(document).ready(function() {
 		main_elem.data('cnavMarker', true);
 		var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
 		var ul_model = main_elem.parents('ul:first').clone(false).addClass('cnavGenerated').empty();
+		var a_model = main_elem.find('a');
 		var li_model = main_elem.clone(false).empty();
 
 		// For themes (like Sunburst) that may add additional classes to elements
-		var liModelClasses = li_model.attr("class").split(" ");
-		var liReviewStateClass = null;
-		var liContentTypeClass = null;
-		jq.each(liModelClasses, function(index, value) {
+		var aModelClasses = a_model.attr("class").split(" ");
+		var aReviewStateClass = null;
+		var aContentTypeClass = null;
+		jq.each(aModelClasses, function(index, value) {
 			var regexpReview = /^state\-/;
-			if (regexpReview.test(value)) liReviewStateClass = value.replace("state-","");
+			if (regexpReview.test(value)) aReviewStateClass = value.replace("state-","");
 			var regexpContenType = /^contenttype\-/;
-			if (regexpContenType.test(value)) liContentTypeClass = value.replace("contenttype-","");
+			if (regexpContenType.test(value)) aContentTypeClass = value.replace("contenttype-","");
 		});
  
 		// Check the right CSS class to be given to the main element
@@ -114,7 +115,7 @@ jq(document).ready(function() {
 		control.bind("click",
 				{main_elem: main_elem, ul_model:ul_model, li_model:li_model,
 				 control:control, wrapDiv:wrapDiv,
-				 reviewStateClass: liReviewStateClass,  contentTypeClass: liContentTypeClass
+				 reviewStateClass: aReviewStateClass,  contentTypeClass: aContentTypeClass
 				},
 				checkClick);
 	};
