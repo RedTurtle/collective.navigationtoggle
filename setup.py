@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.2.0'
+version = '0.2.1'
 
 setup(name='collective.navigationtoggle',
       version=version,
-      description=("Make possible to expand/collapse specific Plone "
-                   "navigation entries in a very unobtrusive way"),
+      description=("Expand/collapse feature for specific Plone "
+                   "navigation entries, in an unobtrusive way"),
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
@@ -18,7 +18,7 @@ setup(name='collective.navigationtoggle',
         "Programming Language :: JavaScript",
         "Development Status :: 5 - Production/Stable",
         ],
-      keywords='plone jquery navigation javascript',
+      keywords='plone plonegov jquery navigation javascript',
       author='RedTurtle Technology',
       author_email='sviluppoplone@redturtle.net',
       url='http://plone.org/products/collective.navigationtoggle',
@@ -36,6 +36,5 @@ setup(name='collective.navigationtoggle',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      setup_requires=["PasteScript"],
       paster_plugins=["ZopeSkel"],
       )
