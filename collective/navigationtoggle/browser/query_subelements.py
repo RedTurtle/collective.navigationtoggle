@@ -32,6 +32,7 @@ class QuerySubelementsView(BrowserView):
         response.addHeader("Pragma", "no-cache")
         portal_url = getToolByName(context, 'portal_url')
         catalog = getToolByName(context, 'portal_catalog')
+        ptool = getToolByName(context, 'plone_utils')
         portal = portal_url.getPortalObject()
         
         path = request.get('path', '')
@@ -50,6 +51,8 @@ class QuerySubelementsView(BrowserView):
                 navElems.append({'title': x.Title,
                                  'url': x.getURL(),
                                  'type': x.portal_type,
+                                 'type_normalized': ptool.normalizeString(x.portal_type),
+                                 'review_state_normalized': ptool.normalizeString(x.review_state),
                                  'icon': "%s/%s" % (portal_url(), x.getIcon),
                                  'description': x.Description,
                                  })

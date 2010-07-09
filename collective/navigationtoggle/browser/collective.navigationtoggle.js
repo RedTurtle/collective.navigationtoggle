@@ -50,11 +50,15 @@ jq(document).ready(function() {
 	 * @param {jQuery} wrapper a wrapper element to be used as container
 	 * @param {boolean} withImage include or not the icon image
 	 * @param {boolean} wrapDiv wrap all generated HTML in a DIV (Plone 3.5/4.0 difference)
+	 * @param {String} reviewStateClass name on the CSS class related to item review state
+	 * @param {String} contentTypeClass name on the CSS class related to item content type
 	 */
-	var makeSubelement = function(data, wrapper, withImage, wrapDiv) {
+	var makeSubelement = function(data, wrapper, withImage, wrapDiv, reviewStateClass, contentTypeClass) {
 		var ehtml = '<a href="'+data.url+'" title="'+data.description+'">' +
 				(withImage?'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>':'') +
 				'<span>'+data.title+'</span></a>';
+		if (reviewStateClass) ehtml.addClass("state-"+data.review_state_normalized);
+		if (contentTypeClass) ehtml.addClass("contenttype-"+data.type_normalized);
 		return wrapper.append(wrapDiv?'<div>'+ehtml+'</div>':ehtml);
 	}
 	
@@ -92,11 +96,26 @@ jq(document).ready(function() {
 		var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
 		var ul_model = main_elem.parents('ul:first').clone(false).addClass('cnavGenerated').empty();
 		var li_model = main_elem.clone(false).empty();
+
+		// For themes (like Sunburst) that may add additional classes to elements
+		var liModelClasses = li_model.attr("class").split(" ");
+		var liReviewStateClass = null;
+		var liContentTypeClass = null;
+		jq.each(liModelClasses, function(index, value) {
+			var regexpReview = /^state\-/;
+			if (regexpReview.test(value)) liReviewStateClass = value.replace("state-","");
+			var regexpContenType = /^contenttype\-/;
+			if (regexpContenType.test(value)) liContentTypeClass = value.replace("contenttype-","");
+		});
+ 
 		// Check the right CSS class to be given to the main element
 		if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
 		else main_elem.addClass('cnavClosed');
 		control.bind("click",
-				{main_elem: main_elem, ul_model:ul_model, li_model:li_model, control:control, wrapDiv:wrapDiv},
+				{main_elem: main_elem, ul_model:ul_model, li_model:li_model,
+				 control:control, wrapDiv:wrapDiv,
+				 reviewStateClass: liReviewStateClass,  contentTypeClass: liContentTypeClass
+				},
 				checkClick);
 	};
 	
@@ -111,6 +130,9 @@ jq(document).ready(function() {
 		var li_model = event.data.li_model;
 		var wrapDiv = event.data.wrapDiv;
 		var control = event.data.control;
+		// optional element classes
+		var reviewStateClass = event.data.reviewStateClass;
+		var contentTypeClass = event.data.contentTypeClass;
 		// cache?
 		var cache = jq.collective_navigationtoggle.cache;
 		if (main_elem.hasClass('cnavClosed')) {
@@ -139,7 +161,8 @@ jq(document).ready(function() {
 						 'foo': loading_time}, // for cache prevention management
 						function(data) {
 							jq.each(data, function(index, value) {
-								new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0, wrapDiv));
+								new_ul.append(makeSubelement(value, li_model.clone(), jq('img', control).length>0,
+								                             wrapDiv, reviewStateClass, contentTypeClass));
 							});
 							// If no element returned from the subtree, perform normal browser action
 							if (jq('li', new_ul).length == 0) {
