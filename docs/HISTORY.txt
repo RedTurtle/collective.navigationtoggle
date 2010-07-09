@@ -6,7 +6,7 @@ Changelog
 
 * Fixed a bug when fast double-click on opened elements (close `#1`__) [keul]
 * Much better Sunburst support (and other themes, in general), now checking also for "*contenttype-xx*"
-  and "*state-*" CSS classes on links [keul]
+  and "*state-xx*" CSS classes on links [keul]
 
 __ http://plone.org/products/collective.navigationtoggle/issues/1
 
