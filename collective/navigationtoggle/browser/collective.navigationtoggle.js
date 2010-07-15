@@ -81,43 +81,50 @@ jq(document).ready(function() {
 	}
 	
 	/**
-	 * A function to be called with jQuery.each(). Check all element defined in the
-	 * toggle_elements, then apply to them the "toggle" feature.
+	 * Apply to the element the toggle feature
 	 * @param {Object} index iteration index
-	 * @param {Object} value current element
+	 * @param {Object} value can be part oh a link url (like "/foo/foo1") but also a jQuery selector
 	 */
 	var makeDynamicElements = function(index, value) {
-		var control = jq(".portletNavigationTree a[href$="+value+"]");
-		if (control.length==0) return;
-		var main_elem = control.parents("li:first");
-		if (main_elem.data("cnavMarker")) return;
-		// mark this element to prevent further call to makeDynamicElements
-		main_elem.data('cnavMarker', true);
-		var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
-		var ul_model = main_elem.parents('ul:first').clone(false).addClass('cnavGenerated').empty();
-		var a_model = main_elem.find('a');
-		var li_model = main_elem.clone(false).empty();
+		var elements = null;
+		try {
+			elements = jq(value);
+			if (elements.length==0) elements = null;
+		} catch (e) {}
+		if (!elements) elements = jq(".portletNavigationTree a[href$="+value+"]");
+		elements.each(function() {
+			var control = jq(this);
+			var main_elem = control.parents("li:first");
+			if (main_elem.data("cnavMarker")) return;
+			// mark this element to prevent further call to makeDynamicElements
+			main_elem.data('cnavMarker', true);
+			var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
+			var ul_model = main_elem.parents('ul:first').clone(false).addClass('cnavGenerated').empty();
+			var a_model = main_elem.find('a');
+			var li_model = main_elem.clone(false).empty();
+	
+			// For themes (like Sunburst) that may add additional classes to elements
+			var aModelClasses = a_model.attr("class").split(" ");
+			var aReviewStateClass = null;
+			var aContentTypeClass = null;
+			jq.each(aModelClasses, function(index, value) {
+				var regexpReview = /^state\-/;
+				if (regexpReview.test(value)) aReviewStateClass = value.replace("state-","");
+				var regexpContenType = /^contenttype\-/;
+				if (regexpContenType.test(value)) aContentTypeClass = value.replace("contenttype-","");
+			});
+	 
+			// Check the right CSS class to be given to the main element
+			if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
+			else main_elem.addClass('cnavClosed');
+			control.bind("click",
+					{main_elem: main_elem, ul_model:ul_model, li_model:li_model,
+					 control:control, wrapDiv:wrapDiv,
+					 reviewStateClass: aReviewStateClass,  contentTypeClass: aContentTypeClass
+					},
+					checkClick);
 
-		// For themes (like Sunburst) that may add additional classes to elements
-		var aModelClasses = a_model.attr("class").split(" ");
-		var aReviewStateClass = null;
-		var aContentTypeClass = null;
-		jq.each(aModelClasses, function(index, value) {
-			var regexpReview = /^state\-/;
-			if (regexpReview.test(value)) aReviewStateClass = value.replace("state-","");
-			var regexpContenType = /^contenttype\-/;
-			if (regexpContenType.test(value)) aContentTypeClass = value.replace("contenttype-","");
 		});
- 
-		// Check the right CSS class to be given to the main element
-		if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
-		else main_elem.addClass('cnavClosed');
-		control.bind("click",
-				{main_elem: main_elem, ul_model:ul_model, li_model:li_model,
-				 control:control, wrapDiv:wrapDiv,
-				 reviewStateClass: aReviewStateClass,  contentTypeClass: aContentTypeClass
-				},
-				checkClick);
 	};
 	
 	/**

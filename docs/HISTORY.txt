@@ -1,11 +1,17 @@
 Changelog
 =========
 
+0.3.0 (Unreleased)
+------------------
+
+* you can now use more general jQuery selector instead of simple URL parts [keul]
+* do not show types that are in list of unwanted types in navigation [keul]
+
 0.2.1 (2010-07-09)
 ------------------
 
-* Fixed a bug when fast double-click on opened elements (close `#1`__) [keul]
-* Much better Sunburst support (and other themes, in general), now checking also for "*contenttype-xx*"
+* fixed a bug when fast double-click on opened elements (close `#1`__) [keul]
+* much better Sunburst support (and other themes, in general), now checking also for "*contenttype-xx*"
   and "*state-xx*" CSS classes on links [keul]
 
 __ http://plone.org/products/collective.navigationtoggle/issues/1

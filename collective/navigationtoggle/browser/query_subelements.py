@@ -33,6 +33,7 @@ class QuerySubelementsView(BrowserView):
         portal_url = getToolByName(context, 'portal_url')
         catalog = getToolByName(context, 'portal_catalog')
         ptool = getToolByName(context, 'plone_utils')
+        metaTypesNotToList = getToolByName(context, 'portal_properties').navtree_properties.metaTypesNotToList;
         portal = portal_url.getPortalObject()
         
         path = request.get('path', '')
@@ -47,7 +48,7 @@ class QuerySubelementsView(BrowserView):
 
         navElems = []
         for x in results:
-            if not x.exclude_from_nav:
+            if not x.exclude_from_nav and x.portal_type not in metaTypesNotToList:
                 navElems.append({'title': x.Title,
                                  'url': x.getURL(),
                                  'type': x.portal_type,
