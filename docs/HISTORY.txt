@@ -4,8 +4,12 @@ Changelog
 0.3.0 (Unreleased)
 ------------------
 
-* you can now use more general jQuery selector instead of simple URL parts [keul]
+* you can now use more general `jQuery selector`__ instead of simple URL parts [keul]
 * do not show types that are in list of unwanted types in navigation [keul]
+* ``collective.navigationtoggle.txt``was empty [keul]
+* JSLint cleanup [keul]
+
+__ http://docs.jquery.com/Selectors
 
 0.2.1 (2010-07-09)
 ------------------

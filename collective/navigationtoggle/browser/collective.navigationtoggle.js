@@ -1,3 +1,5 @@
+/*global jQuery: false, jq: false, document: false */
+
 /**
  * The collective.navigationtoggle Javascript source.
  * Before think "Ehi, I can write this code more and more jQueryish" be aware...
@@ -12,7 +14,7 @@ jQuery.collective_navigationtoggle = {
 	 * Elements must be HREF trailer, that will be looked inside every A elements of
 	 * navigations.
 	 */
-	toggle_elements: new Array(),
+	toggle_elements: [],
 	
 	/**
 	 * Duration in millisecs for control animation slideUp/slideDown effects when
@@ -32,14 +34,16 @@ jq(document).ready(function() {
 	 * Context URL to be used for all AJAX call
 	 */
 	var call_context = jq("head base").attr('href');
-	if (call_context.charAt(call_context.length-1)!='/') call_context=call_context+'/';
+	if (call_context.charAt(call_context.length - 1) !== '/') {
+		call_context = call_context + '/';
+	}
 
 	/*
 	 * Don't want to call the context when is in the portal factory. See the Ale's blog post:
 	 * http://blog.redturtle.it/redturtle-blog/2010/03/11/careful-with-that-ajax-eugene
 	 */
-	if (call_context.indexOf('/portal_factory')>-1) {
-		call_context=call_context.substring(0,call_context.indexOf('/portal_factory')+1);
+	if (call_context.indexOf('/portal_factory') > -1) {
+		call_context = call_context.substring(0, call_context.indexOf('/portal_factory') + 1);
 	}
 
 	var loading_time = new Date().getTime();
@@ -57,10 +61,14 @@ jq(document).ready(function() {
 		var newE = jq('<a href="'+data.url+'" title="'+data.description+'">' +
 				(withImage?'<img alt="'+data.type+'" width="16" height="16" src="'+data.icon+'"/>':'') +
 				'<span>'+data.title+'</span></a>');
-		if (reviewStateClass) newE.addClass("state-"+data.review_state_normalized);
-		if (contentTypeClass) newE.addClass("contenttype-"+data.type_normalized);
+		if (reviewStateClass) {
+			newE.addClass("state-" + data.review_state_normalized);
+		}
+		if (contentTypeClass) {
+			newE.addClass("contenttype-" + data.type_normalized);
+		}
 		return wrapper.append(wrapDiv?jq('<div></div>').append(newE):newE);
-	}
+	};
 	
 	/**
 	 * Get a class (commonly navTreeLevelX) from a jQuery element and rise X to be X+1.
@@ -70,16 +78,21 @@ jq(document).ready(function() {
 	 * @param {String} class the class name (if it isn't navTreeLevelX)
 	 */
 	var riseNavigatorClass = function(element, className) {
-		if (!className) className = "navTreeLevel";
-		classes = element.attr('class').split(" ");
-		for (var i=0;i<classes.length;i++) {
-			if (classes[i].indexOf(className)==0 && classes[i].length==className.length+1) {
-				var c = classes[i].charAt(classes[i].length-1);
-				if (!isNaN(c)) element.removeClass(className+c).addClass(className+(parseInt(c)+1));
+		var classes = element.attr('class').split(" "), i;
+		if (!className) {
+			className = "navTreeLevel";
+		}
+		for (i=0;i<classes.length;i++) {
+			if (classes[i].indexOf(className) === 0 && classes[i].length === className.length + 1) {
+				var c = classes[i].charAt(classes[i].length - 1);
+				if (!isNaN(c)) {
+					element.removeClass(className + c).addClass(className + (parseInt(c, 10) + 1));
+				}
 			}
 		}
-	}
-	
+	};
+
+
 	/**
 	 * Apply to the element the toggle feature
 	 * @param {Object} index iteration index
@@ -89,13 +102,19 @@ jq(document).ready(function() {
 		var elements = null;
 		try {
 			elements = jq(value);
-			if (elements.length==0) elements = null;
+			if (elements.length === 0) {
+				elements = null;
+			}
 		} catch (e) {}
-		if (!elements) elements = jq(".portletNavigationTree a[href$="+value+"]");
+		if (!elements) {
+			elements = jq(".portletNavigationTree a[href$=" + value + "]");
+		}
 		elements.each(function() {
 			var control = jq(this);
 			var main_elem = control.parents("li:first");
-			if (main_elem.data("cnavMarker")) return;
+			if (main_elem.data("cnavMarker")) {
+				return;
+			}
 			// mark this element to prevent further call to makeDynamicElements
 			main_elem.data('cnavMarker', true);
 			var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
@@ -109,14 +128,21 @@ jq(document).ready(function() {
 			var aContentTypeClass = null;
 			jq.each(aModelClasses, function(index, value) {
 				var regexpReview = /^state\-/;
-				if (regexpReview.test(value)) aReviewStateClass = value.replace("state-","");
+				if (regexpReview.test(value)) {
+					aReviewStateClass = value.replace("state-", "");
+				}
 				var regexpContenType = /^contenttype\-/;
-				if (regexpContenType.test(value)) aContentTypeClass = value.replace("contenttype-","");
+				if (regexpContenType.test(value)) {
+					aContentTypeClass = value.replace("contenttype-", "");
+				}
 			});
 	 
 			// Check the right CSS class to be given to the main element
-			if (main_elem.children(":last").is("ul")) main_elem.addClass('cnavOpen');
-			else main_elem.addClass('cnavClosed');
+			if (main_elem.children(":last").is("ul")) {
+				main_elem.addClass('cnavOpen');
+			} else {
+				main_elem.addClass('cnavClosed');
+			} 
 			control.bind("click",
 					{main_elem: main_elem, ul_model:ul_model, li_model:li_model,
 					 control:control, wrapDiv:wrapDiv,
@@ -126,12 +152,23 @@ jq(document).ready(function() {
 
 		});
 	};
-	
+
+
+	/**
+	 * Simple function that perform the whole check for every possible navigation elements
+	 * needing toggle feature.
+	 */
+	var checkDOM = function() {
+		jq.each(jq.collective_navigationtoggle.toggle_elements, makeDynamicElements);
+	};
+
+
 	/**
 	 * Click handler to be used on expasible/collapsible navigation elements.
 	 * @param {Event} event jQuery event object, containing the data structure
 	 */
 	var checkClick = function(event) {
+		var new_ul;
 		// Load data from event
 		var main_elem = event.data.main_elem;
 		var ul_model = event.data.ul_model;
@@ -146,21 +183,20 @@ jq(document).ready(function() {
 		if (main_elem.hasClass('cnavClosed')) {
 			// check if the subtree is in the cache
 			if (cache && main_elem.data('cnavCache')) {
-				var new_ul = main_elem.data('cnavCache');
+				new_ul = main_elem.data('cnavCache');
 				main_elem.append(new_ul);
 				checkDOM();
-				if (jq.collective_navigationtoggle.slide_animation > 0) 
-					new_ul.slideDown(jq.collective_navigationtoggle.slide_animation, function(){
+				if (jq.collective_navigationtoggle.slide_animation > 0) {
+					new_ul.slideDown(jq.collective_navigationtoggle.slide_animation, function() {
 						main_elem.removeClass('cnavClosed').addClass('cnavOpen');
-					});
-				else {
+					});					
+				} else {
 					main_elem.removeClass('cnavClosed').addClass('cnavOpen');
 					new_ul.show();
 				}
-			}
-			else {
+			} else {
 				main_elem.removeClass('cnavClosed').addClass('cnavOpen');
-				var new_ul = ul_model.clone().hide();
+				new_ul = ul_model.clone().hide();
 				main_elem.append(new_ul);
 				riseNavigatorClass(new_ul);
 				// Fill the new element
@@ -173,7 +209,7 @@ jq(document).ready(function() {
 								                             wrapDiv, reviewStateClass, contentTypeClass));
 							});
 							// If no element returned from the subtree, perform normal browser action
-							if (jq('li', new_ul).length == 0) {
+							if (jq('li', new_ul).length === 0) {
 								window.location.href = control.attr('href');
 								return;
 							}
@@ -184,10 +220,11 @@ jq(document).ready(function() {
 								// As far as I'm not sure to rely on jQuery 1.4, I can't use the clone() withDataAndEvents
 								main_elem.data('cnavCache', new_ul.clone(false));
 							// effects?
-							if (jq.collective_navigationtoggle.slide_animation>0)
+							if (jq.collective_navigationtoggle.slide_animation>0) {
 								new_ul.slideDown(jq.collective_navigationtoggle.slide_animation);
-							else
+							} else {
 								new_ul.show();
+							}
 						}
 				);
 			}
@@ -208,14 +245,8 @@ jq(document).ready(function() {
 			event.preventDefault();
 		};
 	};
-	
-	/**
-	 * Simple function that perform the whole check for every possible navigation elements
-	 * needing toggle feature.
-	 */
-	var checkDOM = function() {
-		jq.each(jq.collective_navigationtoggle.toggle_elements, makeDynamicElements);
-	};
+
+
 	checkDOM();
 	
 })
