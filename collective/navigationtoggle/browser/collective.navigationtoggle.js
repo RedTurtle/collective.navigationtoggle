@@ -19,14 +19,26 @@ jQuery.collective_navigationtoggle = {
 	
 	/**
 	 * Duration in millisecs for control animation slideUp/slideDown effects when
-	 * expand/collapse navigation elements. Default to 0 (animation disabled).
+	 * expand/collapse navigation elements. Default to 0 (animation disabled)
 	 */
 	slide_animation: 0,
 	
 	/**
 	 * Flag for enable or disable client side cache of HttpXmlRequest
 	 */
-	cache: true
+	cache: true,
+	
+	/**
+	 * Providing this class, only provided path inside elements with this class are taken.
+	 * Used only if you provide path(s) in the toggle_elements.
+	 */
+	toggleContainerClass: 'portletNavigationTree',
+	
+	/**
+	 * What kind of item must contain the link?
+	 */
+	listType: 'ul',
+	listItem: 'li'
 };
 
 jq(document).ready(function() {
@@ -97,34 +109,46 @@ jq(document).ready(function() {
 	/**
 	 * Apply to the element the toggle feature
 	 * @param {Object} index iteration index
-	 * @param {Object} value can be part oh a link url (like "/foo/foo1") but also a jQuery selector
+	 * @param {Object} value can be part of a link url (like "/foo/foo1") but also a jQuery selector
 	 */
 	var makeDynamicElements = function(index, value) {
 		var elements = null;
+		
+		// try to obtain something from the value as jQuery selector
 		try {
 			elements = jq(value);
 			if (elements.length === 0) {
 				elements = null;
 			}
 		} catch (e) {}
+
+		// in that case, only a path was provided
 		if (!elements) {
-			elements = jq(".portletNavigationTree a[href$=" + value + "]");
+			if (jQuery.collective_navigationtoggle.toggleContainerClass) {
+				elements = jq("."+jQuery.collective_navigationtoggle.toggleContainerClass+" a[href$=" + value + "]");
+			} else {
+				elements = jq("a[href$=" + value + "]");
+			}
 		}
+
 		elements.each(function() {
 			var control = jq(this);
-			var main_elem = control.parents("li:first");
+			var main_elem = control.closest(jQuery.collective_navigationtoggle.listItem);
 			if (main_elem.data("cnavMarker")) {
 				return;
 			}
 			// mark this element to prevent further call to makeDynamicElements
 			main_elem.data('cnavMarker', true);
 			var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
-			var ul_model = main_elem.parents('ul:first').clone(false).addClass('cnavGenerated').empty();
+			var ul_model = main_elem.closest(jQuery.collective_navigationtoggle.listType).clone(false).addClass('cnavGenerated').empty();
 			var a_model = main_elem.find('a');
 			var li_model = main_elem.clone(false).empty();
 	
 			// For themes (like Sunburst) that may add additional classes to elements
-			var aModelClasses = a_model.attr("class").split(" ");
+			var aModelClasses = []; 
+			if (a_model.attr("class")) {
+				aModelClasses = a_model.attr("class").split(" ");
+			}
 			var aReviewStateClass = null;
 			var aContentTypeClass = null;
 			jq.each(aModelClasses, function(index, value) {
@@ -139,7 +163,7 @@ jq(document).ready(function() {
 			});
 	 
 			// Check the right CSS class to be given to the main element
-			if (main_elem.children(":last").is("ul")) {
+			if (main_elem.children(":last").is(jQuery.collective_navigationtoggle.listType)) {
 				main_elem.addClass('cnavOpen');
 			} else {
 				main_elem.addClass('cnavClosed');
@@ -181,6 +205,7 @@ jq(document).ready(function() {
 		var contentTypeClass = event.data.contentTypeClass;
 		// cache?
 		var cache = jq.collective_navigationtoggle.cache;
+		
 		if (main_elem.hasClass('cnavClosed')) {
 			// check if the subtree is in the cache
 			if (cache && main_elem.data('cnavCache')) {
@@ -210,7 +235,7 @@ jq(document).ready(function() {
 								                             wrapDiv, reviewStateClass, contentTypeClass));
 							});
 							// If no element returned from the subtree, perform normal browser action
-							if (jq('li', new_ul).length === 0) {
+							if (jq(jQuery.collective_navigationtoggle.listItem, new_ul).length === 0) {
 								window.location.href = control.attr('href');
 								return;
 							}

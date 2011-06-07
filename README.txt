@@ -1,7 +1,7 @@
 .. contents:: **Table of contents**
 
-Documentation
-=============
+Introduction
+============
 
 Target of this product is to make possible an expand/collapse feature in Plone navigation(s)
 portlet without any modification to the navigation code itself, or any needs to override its features.
@@ -44,12 +44,16 @@ shows in the navigation itself all subsections (so the navigation seems like the
 the target folder).
 A second click will collapse the section.
 
-Default page in a folder and elements marked with "Exclude from navigation" are skipped.
+Default page in a folder, elements marked with "Exclude from navigation" and unwanted
+type from the ``metaTypesNotToList``property will be excluded.
 
 The script try to simulate best at possible a normal portlet navigation behaviour.
 
-The code keeps in mind *graceful degradation*. Browser without javascript enabled will simply use basic
+The code keeps in mind *graceful degradation*. Browser without JavaScript enabled will simply use basic
 Plone navigation features.
+
+Detailed documentation
+======================
 
 How to use
 ----------
@@ -82,6 +86,13 @@ perform the binding of expand/collapse action also for not-yet-loaded elements.
 Please, do not include the "/plonesiteid" part in your path or you will have problems when you put
 Apache in front of Zope.
 
+Instead of giving the link URL path, you can also provide a jQuery selector expression::
+
+    jQuery.collective_navigationtoggle.toggle_elements.push(".portletNavigationTree a.markedLink");
+
+Be aware that, with this configuration, the "*portletNavigationTree*" search filter is not included
+(if you want it, you must provide it yourself).
+
 Whatever configuration you wrote, you **must** include you Javascript(s) file inside *portal_javascript*
 tool *after* the *collective.navigationtoggle.js*.
 Here an example of a Generic Setup import steps for your Javascript::
@@ -97,7 +108,7 @@ Here an example of a Generic Setup import steps for your Javascript::
 Styles
 ------
 
-This products dinamically adds two new possible CSS classes to <li> elements that contains links that match
+This products dinamically adds two new possible CSS classes to ``<li>`` elements that contains links that match
 the configuration.
 
 Class "*cnavClosed*" is added when a special navigation elements is shown on the page and when you close
@@ -108,7 +119,38 @@ You can (but this product doesn't) rely on those classes to give additional styl
 Plone theme.
 
 This products *may* also works on non-standard navigation HTML structure (as the generations on subelement
-is done cloning existings node from the same navigation portlet) but some assumptions are done. 
+is done cloning existings node from the same navigation portlet) but some assumptions are done.
+
+Not standard navigation (...or portlet... or whatever you want)
+---------------------------------------------------------------
+
+As the code works almost client side, you can also use it in portlets that are not standard navigation.
+Theoretically you can use it with something that is not even a portlet.
+
+Whay you need is to change those configuration parameter:
+
+ ``toggleContainerClass``
+     The class that the navigation structure must provide. Only used if you check for link URL path.
+
+     Default is *portletNavigationTree*.
+
+ ``listType``
+     The HTML element structure that the link must be contained into. This is important as is taken
+     and cloned when the link is expanded.
+     
+     Default is *ul*
+
+  ``listItem``
+      As above, but this is the HTML list item that will be checked and used.
+      
+      Default is *li*
+
+For example, you can write::
+
+	jQuery.collective_navigationtoggle.toggleContainerClass = 'portletCollection';
+	jQuery.collective_navigationtoggle.listType = 'dl';
+	jQuery.collective_navigationtoggle.listItem = 'dt';
+	jQuery.collective_navigationtoggle.toggle_elements.push("/my/path");
 
 Effects
 -------
@@ -132,7 +174,6 @@ TODO
 ====
 
 * Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration
-* A clean uninstall GS step
 * Make all this a jQuery plugin
 
 Versions/Dependencies
@@ -141,11 +182,11 @@ Versions/Dependencies
 Browsers
 --------
 
-* Firefox 3.6.6
-* Google Chrome 5.0
-* Opera 10.60
-* Safari 5.0
-* Internet Explorer 8.0
+* Firefox 3.6
+* Google Chrome 5
+* Opera 10
+* Safari 5
+* Internet Explorer 8
 
 Plone
 -----
@@ -172,12 +213,21 @@ __ http://pypi.python.org/pypi/collective.portlet.explore
 Credits
 =======
 
-Developed with the support of `Azienda USL Ferrara`__; Azienda USL Ferrara supports the
-`PloneGov initiative`__.
+Developed with the support of:
 
-.. image:: http://www.ausl.fe.it/logo_ausl.gif
-   :alt: Azienda USL's logo
+* `S. Anna Hospital, Ferrara`__
+  
+  .. image:: http://www.ospfe.it/ospfe-logo.jpg 
+     :alt: S. Anna Hospital logo
 
+* `Azienda USL Ferrara`__
+
+  .. image:: http://www.ausl.fe.it/logo_ausl.gif
+     :alt: Azienda USL logo
+
+All of them supports the `PloneGov initiative`__.
+
+__ http://www.ospfe.it/
 __ http://www.ausl.fe.it/
 __ http://www.plonegov.it/
 

@@ -8,8 +8,15 @@ Changelog
 * do not show types that are in list of unwanted types in navigation [keul]
 * ``collective.navigationtoggle.txt``was empty [keul]
 * JSLint cleanup [keul]
+* code is more general, and new properties likes ``toggleContainerClass``, ``listType``
+  and ``listItem`` has been added.
+  The code now can be used to simulate navigators also with not portlet navigator
+  structures [keul]
+* added the uninstall GS step [keul]
+* fixed the `simplejson`__ dependency correctly, only if with Python < 2.6 [keul]
 
 __ http://docs.jquery.com/Selectors
+__ http://pypi.python.org/pypi/simplejson
 
 0.2.1 (2010-07-09)
 ------------------

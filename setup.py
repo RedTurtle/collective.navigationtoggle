@@ -1,7 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.3.0'
+version = '0.3.0dev'
+
+install_requires = ['setuptools', 'Plone']
+if sys.version_info < (2, 6):
+    install_requires.append('simplejson')
 
 setup(name='collective.navigationtoggle',
       version=version,
@@ -27,14 +31,9 @@ setup(name='collective.navigationtoggle',
       namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-          'setuptools',
-          #'Plone',
-          'simplejson',
-      ],
+      install_requires=install_requires,
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      paster_plugins=["ZopeSkel"],
       )
