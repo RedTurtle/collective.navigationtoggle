@@ -227,8 +227,10 @@ Dependencies
 
 * `simplejson`__ (if using Plone 3)
 * jQuery 1.3 or better
+* `plone.app.registry`__
 
 __ http://pypi.python.org/pypi/simplejson
+__ http://pypi.python.org/pypi/plone.app.registry
 
 Other products
 ==============
