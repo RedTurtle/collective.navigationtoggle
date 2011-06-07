@@ -4,4 +4,7 @@
  <javascript id="++resource++collective.navigationtoggle.js"
              remove="True" />
 
+ <javascript id="collective.navigationtoggle.rules.js"
+             remove="True" />
+
 </object>

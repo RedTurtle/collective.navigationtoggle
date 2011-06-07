@@ -3,7 +3,7 @@
 Introduction
 ============
 
-Target of this product is to make possible an expand/collapse feature in Plone navigation(s)
+Scope of this product is to make possible an expand/collapse feature in Plone navigation(s)
 portlet without any modification to the navigation code itself, or any needs to override its features.
 
 This product *is not* a new navigation portlet, is just a Javascript add-on that rely on native Plone's
@@ -11,8 +11,8 @@ This product *is not* a new navigation portlet, is just a Javascript add-on that
 
 __ http://jquery.com/
 
-When I will need this?
-----------------------
+When you will like this?
+------------------------
 
 The collective.navigationtoggle is useful when your Plone site needs (not much) special handling of
 navigation elements. Sometimes your site structure is someway like this::
@@ -33,19 +33,27 @@ or a default page that only say "Welcome to an important area of the site, pleas
 you are looking for...".
 
 For the user experience the first click is only a waste of time.
+
 What you are looking for can be a client side effect that expand/collapse the folder in the navigation.
-The *NotImportantFolder* itself is not seen as a real content.
+The *NotImportantFolder* itself is not seen as a real content in your information architecture.
 
 What will change
 ----------------
 
+.. image:: http://keul.it/images/plone/collective.navigationtoggle-0.3.0-01.png
+   :alt: Closed navigation from AUSL site
+
 Make possible that special navigation links will no more move the user to the target section but simply
 shows in the navigation itself all subsections (so the navigation seems like the user really moved to
 the target folder).
+
+.. image:: http://keul.it/images/plone/collective.navigationtoggle-0.3.0-02.png
+   :alt: Open navigation from AUSL site
+
 A second click will collapse the section.
 
 Default page in a folder, elements marked with "Exclude from navigation" and unwanted
-type from the ``metaTypesNotToList``property will be excluded.
+type from the ``metaTypesNotToList`` property will be excluded.
 
 The script try to simulate best at possible a normal portlet navigation behaviour.
 
@@ -55,11 +63,26 @@ Plone navigation features.
 Detailed documentation
 ======================
 
-How to use
-----------
+Basic configuration
+-------------------
 
-Right now this is a product *targeted on developers*. You *must* provide a very simple Javascript
-script to use and configure it.
+Use the *Plone registry* to configure which navigation links will be expanded.
+
+.. image:: http://keul.it/images/plone/collective.navigationtoggle-0.3.0-03.png
+   :alt: Setup URL path or jQuery selectors
+
+Just privide a list of elements, where every element can be:
+
+* existing suffix of an *href* attribute for a link (like "/folder/foo")
+* a valid jQuery selector
+
+See next section for more technical informations.
+
+Manually configuration for your themes
+--------------------------------------
+
+If you don't want to use the Plone UI, you can add additional configuration manually;
+you can provide a very simple Javascript script to use and configure it.
 
 You must add additional Javascript source(s) like this::
 
@@ -80,7 +103,7 @@ Another possible configuration::
     jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2/foo3");
 
 This time the "*foo3*" folder is inside the "*foo2*" and can be possible that the last link is not available
-at load page time (because for exampe we are still in the Plone root). However collective.navigationtoggle
+at load page time (because for example we are still in the Plone root). However collective.navigationtoggle
 perform the binding of expand/collapse action also for not-yet-loaded elements. 
 
 Please, do not include the "/plonesiteid" part in your path or you will have problems when you put
@@ -90,12 +113,12 @@ Instead of giving the link URL path, you can also provide a jQuery selector expr
 
     jQuery.collective_navigationtoggle.toggle_elements.push(".portletNavigationTree a.markedLink");
 
-Be aware that, with this configuration, the "*portletNavigationTree*" search filter is not included
+Be aware that, with this kins of configuration, the "*portletNavigationTree*" search filter is not included
 (if you want it, you must provide it yourself).
 
-Whatever configuration you wrote, you **must** include you Javascript(s) file inside *portal_javascript*
+Whatever configuration you wrote, you **must** include you JavaScript(s) file inside *portal_javascript*
 tool *after* the *collective.navigationtoggle.js*.
-Here an example of a Generic Setup import steps for your Javascript::
+Here an example of a Generic Setup import steps for your JavaScript::
 
     <javascript cacheable="True"
              compression="safe"
@@ -115,22 +138,26 @@ Class "*cnavClosed*" is added when a special navigation elements is shown on the
 a subtree.
 When a subsection is open, the class "*cnavOpen*" is added to the same element.
 
+The generated substructure is a copy of the main strucutre given by Plone, but a "*cnavGenerated*" class is
+added to it.
+
 You can (but this product doesn't) rely on those classes to give additional styles effects in your
 Plone theme.
-
-This products *may* also works on non-standard navigation HTML structure (as the generations on subelement
-is done cloning existings node from the same navigation portlet) but some assumptions are done.
 
 Not standard navigation (...or portlet... or whatever you want)
 ---------------------------------------------------------------
 
+This products *may* also works on non-standard navigation HTML structure (as the generations on subelement
+is done cloning existings node from the same navigation portlet) but some assumptions are done.
+
 As the code works almost client side, you can also use it in portlets that are not standard navigation.
-Theoretically you can use it with something that is not even a portlet.
+Theoretically you can use it with something that is not even a portlet!
 
 Whay you need is to change those configuration parameter:
 
  ``toggleContainerClass``
      The class that the navigation structure must provide. Only used if you check for link URL path.
+     You can also null this.
 
      Default is *portletNavigationTree*.
 
@@ -173,8 +200,9 @@ Simply put it to 0 again (the default) to disable effect.
 TODO
 ====
 
-* Give a Plone (or at least ZMI) UI for non-developer users, for TTW configuration
-* Make all this a jQuery plugin
+* Internationalization
+* Change global configuration settings to be different for every navigation
+* More configuration from Plone UI 
 
 Versions/Dependencies
 =====================

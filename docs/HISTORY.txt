@@ -1,12 +1,12 @@
 Changelog
 =========
 
-0.3.0 (Unreleased)
+0.3.0 (2011-06-07)
 ------------------
 
 * you can now use more general `jQuery selector`__ instead of simple URL parts [keul]
 * do not show types that are in list of unwanted types in navigation [keul]
-* ``collective.navigationtoggle.txt``was empty [keul]
+* ``collective.navigationtoggle.txt`` was empty [keul]
 * JSLint cleanup [keul]
 * code is more general, and new properties likes ``toggleContainerClass``, ``listType``
   and ``listItem`` has been added.
@@ -14,6 +14,7 @@ Changelog
   structures [keul]
 * added the uninstall GS step [keul]
 * fixed the `simplejson`__ dependency correctly, only if with Python < 2.6 [keul]
+* links selectors can be added through Plone UI [keul]
 
 __ http://docs.jquery.com/Selectors
 __ http://pypi.python.org/pypi/simplejson

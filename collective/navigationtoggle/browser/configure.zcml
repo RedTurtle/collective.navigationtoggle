@@ -15,4 +15,12 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="collective.navigationtoggle.rules.js"
+      for="*"
+      class=".registered_filters.JavaScript"
+      permission="zope.Public"
+      />
+
+
 </configure>

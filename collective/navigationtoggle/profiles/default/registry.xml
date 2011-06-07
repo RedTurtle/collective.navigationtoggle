@@ -1,0 +1,6 @@
+<registry>
+
+    <!-- Toggle settings -->
+    <records interface="collective.navigationtoggle.interfaces.INavigationToggleSettings" />
+
+</registry>

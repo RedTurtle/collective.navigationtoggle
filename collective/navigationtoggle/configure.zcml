@@ -6,6 +6,11 @@
     i18n_domain="collective.navigationtoggle">
 
   <five:registerPackage package="." initialize=".initialize" />
+
+  <include package="zope.annotation" />
+  <include package="plone.registry" />
+  <include package="plone.app.registry" />
+
   <include package=".browser" />
 
   <genericsetup:registerProfile

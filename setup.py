@@ -1,9 +1,17 @@
+# -*- coding: utf-8 -*-
+
 from setuptools import setup, find_packages
 import os
+import sys
 
-version = '0.3.0dev'
+version = '0.3.0'
 
-install_requires = ['setuptools', 'Plone']
+install_requires = ['setuptools',
+                    'Plone',
+                    'zope.component',
+                    'zope.annotation',
+                    'plone.app.registry']
+
 if sys.version_info < (2, 6):
     install_requires.append('simplejson')
 

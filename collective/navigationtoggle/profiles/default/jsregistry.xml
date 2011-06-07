@@ -6,7 +6,15 @@
              cookable="True"
              enabled="True"
              id="++resource++collective.navigationtoggle.js"
-			 insert-after="jquery-integration.js"
              inline="False"/>
+
+ <javascript cacheable="True"
+             compression="safe"
+             cookable="True"
+             enabled="True"
+             id="collective.navigationtoggle.rules.js"
+			 insert-after="++resource++collective.navigationtoggle.js"
+             inline="False"/>
+
 
 </object>

@@ -1,0 +1,7 @@
+<registry>
+
+    <!-- seems ingored; how to remove? -->
+    <records interface="collective.navigationtoggle.interfaces.INavigationToggleSettings"
+	         delete="True" />
+
+</registry>
