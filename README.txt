@@ -167,10 +167,10 @@ Whay you need is to change those configuration parameter:
      
      Default is *ul*
 
-  ``listItem``
-      As above, but this is the HTML list item that will be checked and used.
+ ``listItem``
+     As above, but this is the HTML list item that will be checked and used.
       
-      Default is *li*
+     Default is *li*
 
 For example, you can write::
 
