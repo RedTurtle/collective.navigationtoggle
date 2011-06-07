@@ -1,4 +1,5 @@
-/*global jQuery: false, jq: false, document: false */
+/*jslint white: true, onevar: false, undef: true, nomen: true, regexp: true, plusplus: false, bitwise: true, newcap: true, maxerr: 50, indent: 4 */
+/*global jQuery: false, jq: false, document: false, window: false */
 
 /**
  * The collective.navigationtoggle Javascript source.
@@ -216,9 +217,10 @@ jq(document).ready(function() {
 							// I call this to obtain something like jQuery.live() feature...
 							checkDOM();
 							// Caching for later clicks
-							if (cache)
+							if (cache) {
 								// As far as I'm not sure to rely on jQuery 1.4, I can't use the clone() withDataAndEvents
-								main_elem.data('cnavCache', new_ul.clone(false));
+								main_elem.data('cnavCache', new_ul.clone(false));								
+							}
 							// effects?
 							if (jq.collective_navigationtoggle.slide_animation>0) {
 								new_ul.slideDown(jq.collective_navigationtoggle.slide_animation);
@@ -231,22 +233,22 @@ jq(document).ready(function() {
 			event.preventDefault();				
 		}
 		else if (main_elem.hasClass('cnavOpen')) {
-			var new_ul = main_elem.children(":last");
-			if (jq.collective_navigationtoggle.slide_animation>0)
+			new_ul = main_elem.children(":last");
+			if (jq.collective_navigationtoggle.slide_animation>0) {
 				new_ul.slideUp(jq.collective_navigationtoggle.slide_animation, function() {
 					new_ul.remove();
 					main_elem.removeClass('cnavOpen').addClass('cnavClosed');
-				});
-			else {
+				});				
+			} else {
 				new_ul.remove();
 				main_elem.removeClass('cnavOpen').addClass('cnavClosed');
 			}
 			
 			event.preventDefault();
-		};
+		}
 	};
 
 
 	checkDOM();
 	
-})
+});
