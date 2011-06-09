@@ -78,8 +78,8 @@ Just privide a list of elements, where every element can be:
 
 See next section for more technical informations.
 
-Manually configuration for your themes
---------------------------------------
+Custom configuration for your themes
+------------------------------------
 
 If you don't want to use the Plone UI, you can add additional configuration manually;
 you can provide a very simple Javascript script to use and configure it.
@@ -138,7 +138,7 @@ Class "*cnavClosed*" is added when a special navigation elements is shown on the
 a subtree.
 When a subsection is open, the class "*cnavOpen*" is added to the same element.
 
-The generated substructure is a copy of the main strucutre given by Plone, but a "*cnavGenerated*" class is
+The generated substructure is a copy of the main structure given by Plone, but a "*cnavGenerated*" class is
 added to it.
 
 You can (but this product doesn't) rely on those classes to give additional styles effects in your
