@@ -10,7 +10,7 @@ class INavigationToggleSettings(Interface):
     
     selectors = schema.Tuple(
             title=_(u"Link selectors"),
-            description=_(u'Make those navigation links abe to expand/collapse.\n '
+            description=_(u'Make those navigation links able to expand/collapse.\n '
                           u'You can provide the URL relative path (omitting the '
                           u'site id) - e.g: "/folder/subfolder".\n '
                           u'You can also provide a standard jQuery selector expression '
