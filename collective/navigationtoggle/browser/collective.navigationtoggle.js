@@ -126,9 +126,9 @@ jQuery.collective_navigationtoggle = {
             // in that case, only a path was provided
             if (!elements) {
                 if ($.collective_navigationtoggle.toggleContainerClasses) {
-					elements = $([]);
+                    elements = $([]);
                     $.each($.collective_navigationtoggle.toggleContainerClasses, function (index, cssClass) {
-						elements = elements.add("." + cssClass + " a[href$=" + value + "]");
+                        elements = elements.add("." + cssClass + " a[href$=" + value + "]");
                     });
                 } else {
                     elements = $("a[href$=" + value + "]");
