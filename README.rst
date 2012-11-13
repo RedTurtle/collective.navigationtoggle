@@ -155,22 +155,22 @@ Theoretically you can use it with something that is not even a portlet!
 
 Whay you need is to change those configuration parameter:
 
- ``toggleContainerClass``
-     The class that the navigation structure must provide. Only used if you check for link URL path.
-     You can also null this.
+``toggleContainerClass``
+    The class that the navigation structure must provide. Only used if you check for link URL path.
+    You can also null this.
+    
+    Default is *portletNavigationTree*.
 
-     Default is *portletNavigationTree*.
-
- ``listType``
-     The HTML element structure that the link must be contained into. This is important as is taken
-     and cloned when the link is expanded.
+``listType``
+    The HTML element structure that the link must be contained into. This is important as is taken
+    and cloned when the link is expanded.
      
-     Default is *ul*
+    Default is *ul*
 
- ``listItem``
-     As above, but this is the HTML list item that will be checked and used.
+``listItem``
+    As above, but this is the HTML list item that will be checked and used.
       
-     Default is *li*
+    Default is *li*
 
 For example, you can write::
 
