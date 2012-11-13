@@ -43,7 +43,7 @@ jQuery.collective_navigationtoggle = {
 
 (function ($) {
     $(document).ready(function () {
-    
+
         /**
          * Context URL to be used for all AJAX call
          */
@@ -121,14 +121,14 @@ jQuery.collective_navigationtoggle = {
                 if (elements.length === 0) {
                     elements = null;
                 }
-            } catch (e) {}
+            } catch (e) {};
     
             // in that case, only a path was provided
             if (!elements) {
                 if ($.collective_navigationtoggle.toggleContainerClasses) {
-                    elements = $();
-                    $.each($.collective_navigationtoggle.toggleContainerClasses, function (index, element) {
-                        elements.pushStack($("." + element + " a[href$=" + value + "]"));
+					elements = $([]);
+                    $.each($.collective_navigationtoggle.toggleContainerClasses, function (index, cssClass) {
+						elements = elements.add("." + cssClass + " a[href$=" + value + "]");
                     });
                 } else {
                     elements = $("a[href$=" + value + "]");
