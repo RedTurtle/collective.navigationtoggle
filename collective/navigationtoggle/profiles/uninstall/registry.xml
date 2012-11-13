@@ -1,7 +1,8 @@
 <registry>
-
-    <!-- seems ingored; how to remove? -->
-    <records interface="collective.navigationtoggle.interfaces.INavigationToggleSettings"
-	         delete="True" />
-
+    <record interface="collective.navigationtoggle.interfaces.INavigationToggleSettings"
+            field="selectors"
+            delete="True"/>
+    <record interface="collective.navigationtoggle.interfaces.INavigationToggleSettings"
+            field="delay"
+            delete="True"/>
 </registry>

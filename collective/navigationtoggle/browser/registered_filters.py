@@ -14,6 +14,7 @@ class JavaScript(BrowserView):
     
     JS_LITERAL = """if (jQuery.collective_navigationtoggle) {
 %s
+%s
 }
 """
 
@@ -24,9 +25,16 @@ class JavaScript(BrowserView):
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(INavigationToggleSettings, check=False)
         
-        outstr = ""
-        for selector in settings.selectors:
-            outstr += self.JS_MODEL % selector + '\n' 
+        outstr_config = """    jQuery.collective_navigationtoggle.slide_animation = %s;\n""" % settings.delay
+        outstr_config += """    jQuery.collective_navigationtoggle.cache = %s;\n""" % \
+                (settings.client_cache and 'true' or 'false')
         
-        return self.JS_LITERAL % outstr
+        outstr_config += """    jQuery.collective_navigationtoggle.toggleContainerClasses = [%s];\n""" % \
+                (",".join(["'%s'" % x for x in settings.toggle_container_classes]))
+        
+        outstr_links = ""
+        for selector in settings.selectors:
+            outstr_links += self.JS_MODEL % selector + '\n' 
+        
+        return self.JS_LITERAL % (outstr_config, outstr_links)
 

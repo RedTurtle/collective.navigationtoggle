@@ -7,9 +7,14 @@
 
   <five:registerPackage package="." initialize=".initialize" />
 
+  <i18n:registerTranslations directory="locales" />
   <include package="zope.annotation" />
-  <include package="plone.registry" />
   <include package="plone.app.registry" />
+
+  <permission
+        id="collective.navigationtoggle.ManageSettings"
+        title="collective.navigationtoggle: Manage settings"
+        />
 
   <include package=".browser" />
 
@@ -17,7 +22,7 @@
       name="default"
       title="collective.navigationtoggle"
       directory="profiles/default"
-      description="Installs the collective.navigationtoggle package"
+      description="Make specific Plone navigation portlet elements to be expandable/collapsible"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
@@ -28,5 +33,7 @@
       description="Remove the collective.navigationtoggle package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+  
+  <include file="upgrades.zcml" />
   
 </configure>

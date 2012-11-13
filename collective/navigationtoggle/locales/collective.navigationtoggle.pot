@@ -1,0 +1,84 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-11-13 15:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.navigationtoggle\n"
+
+#: ../interfaces.py:30
+msgid "Animation delay"
+msgstr ""
+
+#: ../interfaces.py:41
+msgid "Cache"
+msgstr ""
+
+#: ../browser/controlpanel.py:35
+msgid "Cancel"
+msgstr ""
+
+#: ../browser/controlpanel.py:31
+msgid "Changes saved"
+msgstr ""
+
+#: ../browser/controlpanel.py:37
+msgid "Edit cancelled"
+msgstr ""
+
+#: ../interfaces.py:16
+msgid "Link selectors"
+msgstr ""
+
+msgid "Make specific Plone navigation portlet elements to be expandable/collapsible"
+msgstr ""
+
+#: ../browser/controlpanel.py:20
+#: ../profiles/default/controlpanel.xml
+msgid "Navigation Toggle settings"
+msgstr ""
+
+#: ../browser/controlpanel.py:24
+msgid "Save"
+msgstr ""
+
+#: ../interfaces.py:50
+msgid "Toggle container classes"
+msgstr ""
+
+#. Default: "If provided, enable an animation when navigations are expanded/collapsed\n.Animation will require the given number of missilecons to be completed.\nLeave 0 to disable animation."
+#: ../interfaces.py:31
+msgid "help_animation_delay"
+msgstr ""
+
+#. Default: "Cache result of the opened navigation when it's expanded."
+#: ../interfaces.py:42
+msgid "help_client_cache"
+msgstr ""
+
+#. Default: "Make those navigation links able to expand/collapse.\nYou can provide the URL relative path (omitting the site id) - e.g: \"/folder/subfolder\".\nYou can also provide a standard jQuery selector expression (see http://api.jquery.com/category/selectors)."
+#: ../interfaces.py:17
+msgid "help_link_selectors"
+msgstr ""
+
+#. Default: "Manage on which elements the navigation toggle must be activated"
+#: ../browser/controlpanel.py:21
+msgid "help_navigationtoggle_settings_editform"
+msgstr ""
+
+#. Default: "Looks only for links inside HTML elements with those CSS classes.\nNote that this option is used only if you provided toggle links as normal URL path (not for complex jQuery expressions)."
+#: ../interfaces.py:51
+msgid "help_toggle_container_class"
+msgstr ""
+

@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.analyticspanel">
+
+  <genericsetup:upgradeStep
+        title="Upgrade to collective.navigationtoggle 0.4"
+        description="Migrates collective.navigationtoggle to 2000"
+        source="1000"
+        destination="2000"
+        handler=".setuphandlers.migrateTo2000"
+        sortkey="1"
+        profile="collective.navigationtoggle:default"
+    />
+
+</configure>

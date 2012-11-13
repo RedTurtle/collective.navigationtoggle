@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="collective.navigationtoggle">
+
+    <configlet
+        title="Navigation toggle settings"
+        action_id="analytics-settings"
+        appId="collective.navigationtoggle"
+        category="Products"
+        condition_expr=""
+        remove="True">
+            <permission>collective.navigationtoggle: Manage settings</permission>
+    </configlet>
+
+</object>

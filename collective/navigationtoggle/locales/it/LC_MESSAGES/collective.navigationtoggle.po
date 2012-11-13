@@ -1,0 +1,92 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-11-13 15:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.navigationtoggle\n"
+
+#: ../interfaces.py:30
+msgid "Animation delay"
+msgstr "Ritardo nell'animazione"
+
+#: ../interfaces.py:41
+msgid "Cache"
+msgstr ""
+
+#: ../browser/controlpanel.py:35
+msgid "Cancel"
+msgstr "Annulla"
+
+#: ../browser/controlpanel.py:31
+msgid "Changes saved"
+msgstr "Modifiche salvate"
+
+#: ../browser/controlpanel.py:37
+msgid "Edit cancelled"
+msgstr "Modifiche annullate"
+
+#: ../interfaces.py:16
+msgid "Link selectors"
+msgstr "Selettori dei link"
+
+msgid "Make specific Plone navigation portlet elements to be expandable/collapsible"
+msgstr "Rende specifici elementi delle portlet di navigazione Plone espandibili/collassabili"
+
+#: ../browser/controlpanel.py:20
+#: ../profiles/default/controlpanel.xml
+msgid "Navigation Toggle settings"
+msgstr "Impostazioni Navigation Toggle"
+
+#: ../browser/controlpanel.py:24
+msgid "Save"
+msgstr "Salva"
+
+#: ../interfaces.py:50
+msgid "Toggle container classes"
+msgstr "Classi dei contenitori per elementi toggle"
+
+#. Default: "If provided, enable an animation when navigations are expanded/collapsed\n.Animation will require the given number of missilecons to be completed.\nLeave 0 to disable animation."
+#: ../interfaces.py:31
+msgid "help_animation_delay"
+msgstr ""
+"Se fornito, abilita un'animazione quando i navigatori vengono espansi/collassati.\n"
+"L'animazione richiederà il numero indicato di missilecondi per essere completata.\n"
+"Lascia 0 per disabilitare l'animazione."
+
+#. Default: "Cache result of the opened navigation when it's expanded."
+#: ../interfaces.py:42
+msgid "help_client_cache"
+msgstr "Mantieni in cache il risultato nell'apertura del navigatore quando è espanso."
+
+#. Default: "Make those navigation links able to expand/collapse.\nYou can provide the URL relative path (omitting the site id) - e.g: \"/folder/subfolder\".\nYou can also provide a standard jQuery selector expression (see http://api.jquery.com/category/selectors)."
+#: ../interfaces.py:17
+msgid "help_link_selectors"
+msgstr ""
+"Rendi questi link del navigatore espandibile/collassabile.\n"
+"Puoi fornite il percorso relativo dell'URL (omettendo l'id del sito) - e.g: \"/cartella/sottocartella\".\n"
+"Puoi anche utilizzare un selettore jQuery standard (vedere http://api.jquery.com/category/selectors)."
+
+#. Default: "Manage on which elements the navigation toggle must be activated"
+#: ../browser/controlpanel.py:21
+msgid "help_navigationtoggle_settings_editform"
+msgstr "Gestisci su quali elementi il navigation toggle deve essere attivato"
+
+#. Default: "Looks only for links inside HTML elements with those CSS classes.\nNote that this option is used only if you provided toggle links as normal URL path (not for complex jQuery expressions)."
+#: ../interfaces.py:51
+msgid "help_toggle_container_class"
+msgstr ""
+"Considera solo link dentro ad elementi HTML con queste classi CSS.\n"
+"Nota che questa impostazione è usata solo se hai utilizzato link come normali percorsi di URL (non per complesse espressioni jQuery)."
+

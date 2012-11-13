@@ -4,14 +4,21 @@
     i18n_domain="collective.navigationtoggle">
 
   <browser:resource
-        name="collective.navigationtoggle.js"
-        file="collective.navigationtoggle.js"
-        />
+      name="collective.navigationtoggle.js"
+      file="collective.navigationtoggle.js"
+      layer="collective.navigationtoggle.interfaces.INavigationToggleLayer"
+      />
+  <browser:resourceDirectory
+      name="collective.navigationtoggle.images"
+      directory="images"
+      layer="collective.navigationtoggle.interfaces.INavigationToggleLayer"
+      />
 
   <browser:page
       name="query-subelements"
       for="*"
       class=".query_subelements.QuerySubelementsView"
+      layer="collective.navigationtoggle.interfaces.INavigationToggleLayer"
       permission="zope2.View"
       />
 
@@ -19,8 +26,17 @@
       name="collective.navigationtoggle.rules.js"
       for="*"
       class=".registered_filters.JavaScript"
+      layer="collective.navigationtoggle.interfaces.INavigationToggleLayer"
       permission="zope.Public"
       />
 
+    <!-- Control panel -->
+    <browser:page
+        name="navigationtoggle-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.NavigationToggleSettingsControlPanel"
+        permission="collective.navigationtoggle.ManageSettings"
+        layer="..interfaces.INavigationToggleLayer"
+        />
 
 </configure>

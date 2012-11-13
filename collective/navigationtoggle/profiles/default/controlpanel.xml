@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="collective.navigationtoggle">
+
+    <configlet
+        title="Navigation Toggle settings"
+        action_id="navigationtoggle-settings"
+        appId="collective.navigationtoggle"
+        category="Products"
+        condition_expr=""
+        icon_expr="string:${portal_url}/++resource++collective.navigationtoggle.images/toggle.png"
+        url_expr="string:${portal_url}/@@navigationtoggle-settings"
+        visible="True"
+        i18n:attributes="title">
+            <permission>collective.navigationtoggle: Manage settings</permission>
+    </configlet>
+
+</object>

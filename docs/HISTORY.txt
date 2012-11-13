@@ -1,10 +1,27 @@
 Changelog
 =========
 
+0.4.0 (Unreleased)
+------------------
+
+* added a product's browser layer
+  [keul]
+* added animation timing in the UI configuration
+  [keul]
+* provided a configuration panel
+  [keul]
+* ``toggleContainerClass`` now is ``toggleContainerClasses``
+  (can use a set of classes)
+  [keul]
+* JavaScript option like ``slide_animation``, ``cache``
+  and ``toggleContainerClasses`` now customizable from Plone UI
+  [keul]
+* added i18n support and italian translation [keul]
+
 0.3.0 (2011-06-07)
 ------------------
 
-* you can now use more general `jQuery selector`__ instead of simple URL parts [keul]
+* you can now use more general `jQuery selector`__ instead of simple URL path [keul]
 * do not show types that are in list of unwanted types in navigation [keul]
 * ``collective.navigationtoggle.txt`` was empty [keul]
 * JSLint cleanup [keul]

@@ -1,0 +1,5 @@
+<layers>
+    <layer name="collective.navigationtoggle"
+           interface="collective.navigationtoggle.interfaces.INavigationToggleLayer"
+		   remove="True" />
+</layers>
