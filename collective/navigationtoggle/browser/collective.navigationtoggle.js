@@ -47,20 +47,22 @@ jQuery.collective_navigationtoggle = {
         /**
          * Context URL to be used for all AJAX call
          */
+		/*
         var call_context = $("head base").attr('href');
         if (call_context.charAt(call_context.length - 1) !== '/') {
             call_context = call_context + '/';
         }
+        */
+		var call_context = portal_url + '/';
     
         /*
          * Don't want to call the context when is in the portal factory. See the Ale's blog post:
          * http://blog.redturtle.it/redturtle-blog/2010/03/11/careful-with-that-ajax-eugene
          */
-        //if (call_context.indexOf('/portal_factory') > -1) {
-        //    call_context = call_context.substring(0, call_context.indexOf('/portal_factory') + 1);
-        //}
-		call_context = portal_url + '/';
-    
+		if (call_context.indexOf('/portal_factory') > -1) {
+            call_context = call_context.substring(0, call_context.indexOf('/portal_factory') + 1);
+        }
+		
         var loading_time = new Date().getTime();
         
         /**
@@ -279,6 +281,10 @@ jQuery.collective_navigationtoggle = {
         };
 
         checkDOM();
+		
+		$(document).bind('checkDOM.navigationtoggle', function() {
+			checkDOM();
+		})
 
     });
 })(jQuery);
