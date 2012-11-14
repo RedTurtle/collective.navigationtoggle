@@ -56,9 +56,10 @@ jQuery.collective_navigationtoggle = {
          * Don't want to call the context when is in the portal factory. See the Ale's blog post:
          * http://blog.redturtle.it/redturtle-blog/2010/03/11/careful-with-that-ajax-eugene
          */
-        if (call_context.indexOf('/portal_factory') > -1) {
-            call_context = call_context.substring(0, call_context.indexOf('/portal_factory') + 1);
-        }
+        //if (call_context.indexOf('/portal_factory') > -1) {
+        //    call_context = call_context.substring(0, call_context.indexOf('/portal_factory') + 1);
+        //}
+		call_context = portal_url + '/';
     
         var loading_time = new Date().getTime();
         
