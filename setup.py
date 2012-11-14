@@ -15,6 +15,8 @@ install_requires = ['setuptools',
 if sys.version_info < (2, 6):
     install_requires.append('simplejson')
 
+tests_require=['plone.app.testing', ]
+
 setup(name='collective.navigationtoggle',
       version=version,
       description=("Expand/collapse feature for specific Plone "
@@ -25,7 +27,10 @@ setup(name='collective.navigationtoggle',
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
-        "Intended Audience :: Developers",
+        "Framework :: Plone :: 3.3",
+        "Framework :: Plone :: 4.0",
+        "Framework :: Plone :: 4.1",
+        "Framework :: Plone :: 4.2",
         "Programming Language :: Python",
         "Programming Language :: JavaScript",
         "Development Status :: 5 - Production/Stable",
@@ -39,6 +44,8 @@ setup(name='collective.navigationtoggle',
       namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
+      tests_require=tests_require,
+      extras_require=dict(test=tests_require),
       install_requires=install_requires,
       entry_points="""
       [z3c.autoinclude.plugin]
