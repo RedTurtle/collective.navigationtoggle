@@ -11,6 +11,8 @@ This product *is not* a new navigation portlet, is just a Javascript add-on that
 
 __ http://jquery.com/
 
+More important: it is only focused to make *some* navigation links to be expandable. 
+
 When you will like this?
 ------------------------
 
@@ -40,19 +42,23 @@ The *NotImportantFolder* itself is not seen as a real content in your informatio
 What will change
 ----------------
 
-.. image:: http://keul.it/images/plone/collective.navigationtoggle-0.3.0-01.png
+.. image:: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-01.png
+   :align: right
    :alt: Closed navigation from AUSL site
+   :target: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-01.png/image_mini
+
+.. image:: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-02.png/image_mini
+   :align: right
+   :alt: Open navigation from AUSL site
+   :target: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-02.png
 
 Make possible that special navigation links will no more move the user to the target section but simply
 shows in the navigation itself all subsections (so the navigation seems like the user really moved to
 the target folder).
 
-.. image:: http://keul.it/images/plone/collective.navigationtoggle-0.3.0-02.png
-   :alt: Open navigation from AUSL site
-
 A second click will collapse the section.
 
-Default page in a folder, elements marked with "Exclude from navigation" and unwanted
+Default page in a folder, elements marked with "*Exclude from navigation*" and unwanted
 type from the ``metaTypesNotToList`` property will be excluded.
 
 The script try to simulate best at possible a normal portlet navigation behaviour.
@@ -66,67 +72,56 @@ Detailed documentation
 Basic configuration
 -------------------
 
-Use the *Plone registry* to configure which navigation links will be expanded.
+In your Plone configuration panel you'll find the new "*Navigation Toggle settings*".
 
-.. image:: http://keul.it/images/plone/collective.navigationtoggle-0.3.0-03.png
-   :alt: Setup URL path or jQuery selectors
+.. image:: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.4.0-01.png/image_preview
+   :alt: Setup of Navigation Toggle configuration
+   :target: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.4.0-01.png
 
-Just privide a list of elements, where every element can be:
 
-* existing suffix of an *href* attribute for a link (like "/folder/foo")
-* a valid jQuery selector
+From this section you can configure a lot of advanced options, mainly you need to configure:
 
-See next section for more technical informations.
+**Link selectors**
+    A set of URL path suffix like ``/foo1/foo2`` of an *href* attribute for a link.
+    With this example a link like this will be *hit*::
+    
+        <a href="http://plonehost/plone/foo1/foo2">
+    
+    Commonly only link inside navigation portlet are checked (see the "*Toggle container classes*").
+    
+    You can also provide here a complex jQuery expression (for example: "``li.navTreeItem a``").
 
-Custom configuration for your themes
-------------------------------------
+**Animation delay**
+    The product can enable for you a graphical effect when you expand/collapse items. This is disabled by
+    default.
 
-If you don't want to use the Plone UI, you can add additional configuration manually;
-you can provide a very simple Javascript script to use and configure it.
+    To enable it you must change this value to something higher that 0. The value you put there is the time
+    (in millisec) used for the `slideDown`__ and `slideUp`__ jQuery's effect.
 
-You must add additional Javascript source(s) like this::
+    __ http://api.jquery.com/slideDown/
+    __ http://api.jquery.com/slideUp/
 
-    jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2");
+    Simply put it to 0 again (the default) to disable effect.
 
-Where "*/foo1/foo2*" can be an existing suffix of an *href* attribute for a link. Only link inside
-navigation portlet are checked (looking for "*portletNavigationTree*" class).
+Advanced configurations
+-----------------------
 
-So, a link like this (*if* inside a navigation portlet) is "hit" and magically handled::
+**Cache**
+    Check it to perform client side cache of the AJAX request.
+    If disabled a request to the server will be performed for every click on navigations.
 
-    <a href="http://plonehost/foo/foo1/foo2">
+**Toggle container classes**
+    A set of CSS classes that mark you navigation elements.
+    Only links inside elements with one of those classes are "toggleable".
+    
+    Note that this option is ignored for "Links selectors" entries where you used a jQuery
+    expression and not a URL path.
 
-This because the *href* ends with one of the elements found inside *toggle_elements*.
+**HTML list type**
+    The type of HTML container element to looks for.
 
-Another possible configuration::
-
-    jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2");
-    jQuery.collective_navigationtoggle.toggle_elements.push("/foo1/foo2/foo3");
-
-This time the "*foo3*" folder is inside the "*foo2*" and can be possible that the last link is not available
-at load page time (because for example we are still in the Plone root). However collective.navigationtoggle
-perform the binding of expand/collapse action also for not-yet-loaded elements. 
-
-Please, do not include the "/plonesiteid" part in your path or you will have problems when you put
-Apache in front of Zope.
-
-Instead of giving the link URL path, you can also provide a jQuery selector expression::
-
-    jQuery.collective_navigationtoggle.toggle_elements.push(".portletNavigationTree a.markedLink");
-
-Be aware that, with this kins of configuration, the "*portletNavigationTree*" search filter is not included
-(if you want it, you must provide it yourself).
-
-Whatever configuration you wrote, you **must** include you JavaScript(s) file inside *portal_javascript*
-tool *after* the *collective.navigationtoggle.js*.
-Here an example of a Generic Setup import steps for your JavaScript::
-
-    <javascript cacheable="True"
-             compression="safe"
-             cookable="True"
-             enabled="True"
-             id="my-configuration-javascript-load-path.js"
-             insert-after="++resource++collective.navigationtoggle.js"
-             inline="False" />
+**HTML list item**
+    The type of HTML item element to be generated.
 
 Styles
 ------
@@ -153,57 +148,6 @@ is done cloning existings node from the same navigation portlet) but some assump
 As the code works almost client side, you can also use it in portlets that are not standard navigation.
 Theoretically you can use it with something that is not even a portlet!
 
-Whay you need is to change those configuration parameter:
-
-``toggleContainerClass``
-    The class that the navigation structure must provide. Only used if you check for link URL path.
-    You can also null this.
-    
-    Default is *portletNavigationTree*.
-
-``listType``
-    The HTML element structure that the link must be contained into. This is important as is taken
-    and cloned when the link is expanded.
-     
-    Default is *ul*
-
-``listItem``
-    As above, but this is the HTML list item that will be checked and used.
-      
-    Default is *li*
-
-For example, you can write::
-
-	jQuery.collective_navigationtoggle.toggleContainerClass = 'portletCollection';
-	jQuery.collective_navigationtoggle.listType = 'dl';
-	jQuery.collective_navigationtoggle.listItem = 'dt';
-	jQuery.collective_navigationtoggle.toggle_elements.push("/my/path");
-
-Effects
--------
-
-The product can enable for you a graphical effect when you expand/collapse items. This is disabled by
-default.
-
-To enable it you must change another plugin var::
-
-    jQuery.collective_navigationtoggle.slide_animation = 300;
-
-The value you put there is the time (in millisec) used for the `slideDown`__ and `slideUp`__ jQuery's
-effect.
-
-__ http://api.jquery.com/slideDown/
-__ http://api.jquery.com/slideUp/
-
-Simply put it to 0 again (the default) to disable effect.
-
-TODO
-====
-
-* Internationalization
-* Change global configuration settings to be different for every navigation
-* More configuration from Plone UI 
-
 Versions/Dependencies
 =====================
 
@@ -220,7 +164,7 @@ Plone
 -----
 
 * Plone 3.3 (classic Plone theme)
-* Plone 4.0 (classic Plone theme and Sunburst)
+* Plone 4.2 (classic Plone theme and Sunburst)
 
 Dependencies
 ------------
@@ -231,6 +175,11 @@ Dependencies
 
 __ http://pypi.python.org/pypi/simplejson
 __ http://pypi.python.org/pypi/plone.app.registry
+
+TODO
+====
+
+* Change global configuration settings to be different for every navigation
 
 Other products
 ==============
@@ -266,7 +215,7 @@ Authors
 
 This product was developed by RedTurtle Technology team.
 
-.. image:: http://www.redturtle.net/redturtle_banner.png
+.. image:: http://www.redturtle.it/redturtle_banner.png
    :alt: RedTurtle Technology Site
-   :target: http://www.redturtle.net/
+   :target: http://www.redturtle.it/
 
