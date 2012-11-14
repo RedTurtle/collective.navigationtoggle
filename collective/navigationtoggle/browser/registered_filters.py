@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from zope import interface
 from zope.component import queryUtility
 
 from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
 
 from plone.registry.interfaces import IRegistry
 from collective.navigationtoggle.interfaces import INavigationToggleSettings
