@@ -57,3 +57,22 @@ class INavigationToggleSettings(Interface):
             missing_value=(),
             value_type=schema.TextLine(),
         )
+
+    list_type = schema.ASCIILine(
+            title=_(u"HTML list type"),
+            description=_('help_list_type',
+                          default=u'The type of list element to looks for inside navigation(s).\n'
+                                  u'This is the element that the toggle feature will try to clone.'),
+            required=True,
+            default='ul',
+        )
+
+    list_item = schema.ASCIILine(
+            title=_(u"HTML list element"),
+            description=_('help_list_item',
+                          default=u'The item of a single list entry to looks for inside navigations.\n'
+                                  u'This is the element that the toggle feature will generate when expandig.'),
+            required=True,
+            default='li',
+        )
+

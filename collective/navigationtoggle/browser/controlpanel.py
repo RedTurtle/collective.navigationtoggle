@@ -46,7 +46,10 @@ class NavigationToggleEditForm(controlpanel.RegistryEditForm):
         self.widgets['selectors'].rows = 7
         self.widgets['delay'].size = 4;
         self.widgets['delay'].maxlength = 4;
-
+        self.widgets['list_type'].maxlength = 15;
+        self.widgets['list_type'].size = 15;
+        self.widgets['list_item'].maxlength = 15;
+        self.widgets['list_item'].size = 15;
 
 class NavigationToggleSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
     """Navigationtoggle settings control panel.

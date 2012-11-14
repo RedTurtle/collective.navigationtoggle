@@ -31,6 +31,9 @@ class JavaScript(BrowserView):
         
         outstr_config += """    jQuery.collective_navigationtoggle.toggleContainerClasses = [%s];\n""" % \
                 (",".join(["'%s'" % x for x in settings.toggle_container_classes]))
+
+        outstr_config += """    jQuery.collective_navigationtoggle.listType = '%s';\n""" % settings.list_type
+        outstr_config += """    jQuery.collective_navigationtoggle.listType = '%s';\n""" % settings.list_item
         
         outstr_links = ""
         for selector in settings.selectors:

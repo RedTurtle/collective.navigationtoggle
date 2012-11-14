@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-13 15:53+0000\n"
+"POT-Creation-Date: 2012-11-14 09:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,14 @@ msgstr "Modifiche salvate"
 #: ../browser/controlpanel.py:37
 msgid "Edit cancelled"
 msgstr "Modifiche annullate"
+
+#: ../interfaces.py:71
+msgid "HTML list element"
+msgstr "Elemento lista HTML"
+
+#: ../interfaces.py:62
+msgid "HTML list type"
+msgstr "Tipo di lista HTML"
 
 #: ../interfaces.py:16
 msgid "Link selectors"
@@ -77,6 +85,20 @@ msgstr ""
 "Rendi questi link del navigatore espandibile/collassabile.\n"
 "Puoi fornite il percorso relativo dell'URL (omettendo l'id del sito) - e.g: \"/cartella/sottocartella\".\n"
 "Puoi anche utilizzare un selettore jQuery standard (vedere http://api.jquery.com/category/selectors)."
+
+#. Default: "The item of a single list entry to looks for inside navigations.\nThis is the element that the toggle feature will generate when expandig."
+#: ../interfaces.py:72
+msgid "help_list_item"
+msgstr ""
+"L'elemento di una singolo elemento della lista da cercare dentro al navigatore(i).\n"
+"Questo è l'elemento che la funzionalità di toggle genererà all'espansione."
+
+#. Default: "The type of list element to looks for inside navigation(s).\nThis is the element that the toggle feature will try to clone."
+#: ../interfaces.py:63
+msgid "help_list_type"
+msgstr ""
+"Il tipo di elemento lista da cercare dentro al navigatore(i).\n"
+"Questo è l'elemento che la funzionalità di toggle tenterà di clonare."
 
 #. Default: "Manage on which elements the navigation toggle must be activated"
 #: ../browser/controlpanel.py:21

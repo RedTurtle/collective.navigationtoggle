@@ -6,17 +6,15 @@ Changelog
 
 * added a product's browser layer
   [keul]
-* added animation timing in the UI configuration
+* provided an own configuration panel
   [keul]
-* provided a configuration panel
+* added all remaining configutation in Plone UI
   [keul]
 * ``toggleContainerClass`` now is ``toggleContainerClasses``
-  (can use a set of classes)
-  [keul]
-* JavaScript option like ``slide_animation``, ``cache``
-  and ``toggleContainerClasses`` now customizable from Plone UI
+  (can be used for a set of classes)
   [keul]
 * added i18n support and italian translation [keul]
+  [keul]
 
 0.3.0 (2011-06-07)
 ------------------

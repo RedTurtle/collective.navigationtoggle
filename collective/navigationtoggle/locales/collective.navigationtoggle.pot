@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-13 15:53+0000\n"
+"POT-Creation-Date: 2012-11-14 09:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,14 @@ msgstr ""
 
 #: ../browser/controlpanel.py:37
 msgid "Edit cancelled"
+msgstr ""
+
+#: ../interfaces.py:71
+msgid "HTML list element"
+msgstr ""
+
+#: ../interfaces.py:62
+msgid "HTML list type"
 msgstr ""
 
 #: ../interfaces.py:16
@@ -70,6 +78,16 @@ msgstr ""
 #. Default: "Make those navigation links able to expand/collapse.\nYou can provide the URL relative path (omitting the site id) - e.g: \"/folder/subfolder\".\nYou can also provide a standard jQuery selector expression (see http://api.jquery.com/category/selectors)."
 #: ../interfaces.py:17
 msgid "help_link_selectors"
+msgstr ""
+
+#. Default: "The item of a single list entry to looks for inside navigations.\nThis is the element that the toggle feature will generate when expandig."
+#: ../interfaces.py:72
+msgid "help_list_item"
+msgstr ""
+
+#. Default: "The type of list element to looks for inside navigation(s).\nThis is the element that the toggle feature will try to clone."
+#: ../interfaces.py:63
+msgid "help_list_type"
 msgstr ""
 
 #. Default: "Manage on which elements the navigation toggle must be activated"
