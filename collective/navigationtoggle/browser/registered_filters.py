@@ -28,7 +28,7 @@ class JavaScript(BrowserView):
                 (settings.client_cache and 'true' or 'false')
         
         outstr_config += """    jQuery.collective_navigationtoggle.toggleContainerClasses = [%s];\n""" % \
-                (",".join(["'%s'" % x for x in settings.toggle_container_classes]))
+                (", ".join(["'%s'" % x for x in settings.toggle_container_classes]))
 
         outstr_config += """    jQuery.collective_navigationtoggle.listType = '%s';\n""" % settings.list_type
         outstr_config += """    jQuery.collective_navigationtoggle.listItem = '%s';\n""" % settings.list_item
