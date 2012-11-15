@@ -13,7 +13,7 @@ Changelog
 * ``toggleContainerClass`` now is ``toggleContainerClasses``
   (can be used for a set of classes)
   [keul]
-* added i18n support and italian translation [keul]
+* added i18n support and italian translation
   [keul]
 * changes AJAX calling context, now always calling portal root URL
   [keul]
