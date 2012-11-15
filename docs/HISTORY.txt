@@ -17,6 +17,8 @@ Changelog
   [keul]
 * changes AJAX calling context, now always calling portal root URL
   [keul]
+* added tests (both Plone and JavaScript)
+  [keul]
 
 0.3.0 (2011-06-07)
 ------------------

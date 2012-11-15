@@ -42,10 +42,10 @@ The *NotImportantFolder* itself is not seen as a real content in your informatio
 What will change
 ----------------
 
-.. image:: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-01.png
-   :align: right
+.. image:: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-01.png/image_mini
+   :align: left
    :alt: Closed navigation from AUSL site
-   :target: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-01.png/image_mini
+   :target: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-01.png
 
 .. image:: http://blog.redturtle.it/pypi-images/collective.navigationtoggle/collective.navigationtoggle-0.3.0-02.png/image_mini
    :align: right
@@ -154,11 +154,11 @@ Versions/Dependencies
 Browsers
 --------
 
-* Firefox 3.6
-* Google Chrome 5
-* Opera 10
-* Safari 5
-* Internet Explorer 8
+* Firefox 16 (...probably a new major version will be released while I'm typing this line...)
+* Google Chrome 23 (...same as above...)
+* Opera 12
+* Safari 5.1
+* Internet Explorer 8, 9
 
 Plone
 -----
