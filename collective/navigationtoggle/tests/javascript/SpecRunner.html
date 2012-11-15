@@ -16,9 +16,10 @@
 
   <!-- include spec files here... -->
   <script type="text/javascript" src="spec/BasicSpec.js"></script>
+  <script type="text/javascript" src="spec/AJAXSpec.js"></script>
 
   <script type="text/javascript">
-  	portal_url = '';
+      portal_url = '';
     (function() {
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
@@ -31,18 +32,9 @@
         return htmlReporter.specFilter(spec);
       };
 
-      var currentWindowOnload = window.onload;
-
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
-        }
-        execJasmine();
-      };
-
-      function execJasmine() {
-        jasmineEnv.execute();
-      }
+      $(document).ready(function() {
+	      jasmineEnv.execute();
+	  })
 
     })();
   </script>
@@ -50,48 +42,46 @@
 </head>
 
 <body>
-	
+    
 <div class="ntTest" id="test1">
-	<dl class="portlet portletNavigationTree">
-	
-	    <dt class="portletHeader hiddenStructure">
-	        <span class="portletTopLeft"></span>
-	        <a class="tile" href="http://localhost:8080/Plone/sitemap">Navigation</a>
-	        <span class="portletTopRight"></span>
-	    </dt>
-	
-	    <dd class="portletItem lastItem">
-	        <ul class="navTree navTreeLevel0">
-
-	
-	<li class="navTreeItem visualNoMarker navTreeFolderish section-members">
-	
-	        <a title="Contenitore delle cartelle personali dei collaboratori."
-			   class="state-published navTreeFolderish contenttype-folder"
-			   href="http://localhost:8080/Plone/Members">
-	            
-	            <span>Collaboratori</span>
-	        </a>
-	    
-	</li>
-	
-	
-	<li class="navTreeItem visualNoMarker navTreeFolderish section-test">
-	
-	        <a title="" class="state-published navTreeFolderish contenttype-folder"
-			   href="http://localhost:8080/Plone/test">
-	            
-	            <span>Test</span>
-	        </a>
-	
-	</li>
-	
-	        </ul>
-	        <span class="portletBottomLeft"></span>
-	        <span class="portletBottomRight"></span>
-	    </dd>
-	</dl>
+    <dl class="portlet portletNavigationTree">
+    
+        <dt class="portletHeader hiddenStructure">
+            <span class="portletTopLeft"></span>
+            <a class="tile" href="Plone/sitemap">Navigation</a>
+            <span class="portletTopRight"></span>
+        </dt>
+    
+        <dd class="portletItem lastItem">
+            <ul class="navTree navTreeLevel0">
+    
+                <li class="navTreeItem visualNoMarker navTreeFolderish section-members">
+                
+                        <a title="Contenitore delle cartelle personali dei collaboratori."
+                           class="state-published navTreeFolderish contenttype-folder"
+                           href="/Plone/Members">
+                            
+                            <span>Collaboratori</span>
+                        </a>
+                    
+                </li>
+                
+                <li class="navTreeItem visualNoMarker navTreeFolderish section-test">
+                
+                        <a title="" class="state-published navTreeFolderish contenttype-folder"
+                           href="/Plone/test">
+                            
+                            <span>Test</span>
+                        </a>
+                
+                </li>
+    
+            </ul>
+            <span class="portletBottomLeft"></span>
+            <span class="portletBottomRight"></span>
+        </dd>
+    </dl>
 </div>
-	
+    
 </body>
 </html>
