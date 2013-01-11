@@ -165,6 +165,7 @@ Plone
 
 * Plone 3.3 (classic Plone theme)
 * Plone 4.2 (classic Plone theme and Sunburst)
+* Plone 4.3 (classic Plone theme and Sunburst)
 
 Dependencies
 ------------
