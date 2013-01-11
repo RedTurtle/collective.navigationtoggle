@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-14 09:20+0000\n"
+"POT-Creation-Date: 2013-01-11 13:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
-#: ../browser/controlpanel.py:35
+#: ../browser/controlpanel.py:36
 msgid "Cancel"
 msgstr ""
 
-#: ../browser/controlpanel.py:31
+#: ../browser/controlpanel.py:32
 msgid "Changes saved"
 msgstr ""
 
-#: ../browser/controlpanel.py:37
+#: ../browser/controlpanel.py:38
 msgid "Edit cancelled"
 msgstr ""
 
@@ -45,6 +45,10 @@ msgstr ""
 msgid "HTML list type"
 msgstr ""
 
+#: ../browser/controlpanel.py:48
+msgid "JavaScript registry invalidated"
+msgstr ""
+
 #: ../interfaces.py:16
 msgid "Link selectors"
 msgstr ""
@@ -52,13 +56,17 @@ msgstr ""
 msgid "Make specific Plone navigation portlet elements to be expandable/collapsible"
 msgstr ""
 
-#: ../browser/controlpanel.py:20
+#: ../browser/controlpanel.py:21
 #: ../profiles/default/controlpanel.xml
 msgid "Navigation Toggle settings"
 msgstr ""
 
-#: ../browser/controlpanel.py:24
+#: ../browser/controlpanel.py:25
 msgid "Save"
+msgstr ""
+
+#: ../browser/controlpanel.py:43
+msgid "Save and invalidate JS cache"
 msgstr ""
 
 #: ../interfaces.py:50
@@ -91,7 +99,7 @@ msgid "help_list_type"
 msgstr ""
 
 #. Default: "Manage on which elements the navigation toggle must be activated"
-#: ../browser/controlpanel.py:21
+#: ../browser/controlpanel.py:22
 msgid "help_navigationtoggle_settings_editform"
 msgstr ""
 

@@ -176,6 +176,14 @@ Dependencies
 __ http://pypi.python.org/pypi/simplejson
 __ http://pypi.python.org/pypi/plone.app.registry
 
+Cache controls
+==============
+
+Toggle configuration are stored in a JavaScript file that your browser and Plone *portal_javascript* tool
+will probably cache.
+
+When changing configuration you can use the "*Save and invalidate JS cache*" button.
+
 TODO
 ====
 
@@ -185,9 +193,13 @@ Other products
 ==============
 
 If you need a complete expand/collapse navigation feature this product is not for you; so take a
-look to `collective.portlet.explore`__.
+look at:
+
+* `collective.portlet.explore`__
+* `Solgema.NavigationPortlet`__
 
 __ http://pypi.python.org/pypi/collective.portlet.explore
+__ http://plone.org/products/solgema.navigationportlet
 
 Credits
 =======

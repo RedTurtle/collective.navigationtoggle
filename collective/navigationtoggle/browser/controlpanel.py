@@ -2,6 +2,7 @@
 
 #from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.registry.browser import controlpanel
@@ -38,6 +39,14 @@ class NavigationToggleEditForm(controlpanel.RegistryEditForm):
                                                       "info")
         self.request.response.redirect("%s/%s" % (self.context.absolute_url(),
                                                   self.control_panel_view))
+
+    @button.buttonAndHandler(_('Save and invalidate JS cache'), name='save_and_invalidate')
+    def handleSaveAndInvalidate(self, action):
+        NavigationToggleEditForm.handleSave(self, action)
+        portal_js = getToolByName(self.context, 'portal_javascripts')
+        portal_js.cookResources()
+        IStatusMessage(self.request).addStatusMessage(_(u"JavaScript registry invalidated"),
+                                                      "info")
 
     def updateWidgets(self):
         super(NavigationToggleEditForm, self).updateWidgets()

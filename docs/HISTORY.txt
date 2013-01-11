@@ -1,16 +1,19 @@
 Changelog
 =========
 
-0.4.1 (unreleased)
+1.0.0 (unreleased)
 ------------------
 
 - fixed a bug when used with containers with spaces inside the id
   (close `#2`__) [keul]
 - file icon of generated elements where not handled in the right way
   (close `#3`__) [keul]
+- added a way to invalidate JS cache
+  (close `#1`__) [keul]
 
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/2
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/3
+  __ https://github.com/RedTurtle/collective.navigationtoggle/issues/1
 
 0.4.0 (2012-11-15)
 ------------------
