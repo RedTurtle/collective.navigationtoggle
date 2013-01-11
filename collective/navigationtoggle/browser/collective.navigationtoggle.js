@@ -12,8 +12,8 @@ jQuery.collective_navigationtoggle = {
     /**
      * Store there all references to navigation elements that must be made
      * expansible/collapsible.
-     * Elements must be HREF trailer, that will be looked inside every A elements of
-     * navigations.
+     * Every element can be HREF trailer, that will be looked inside every A elements of
+     * navigations or a normal jQuery selector.
      */
     toggle_elements: [],
     
@@ -112,7 +112,7 @@ jQuery.collective_navigationtoggle = {
     
         /**
          * Apply to the element the toggle feature
-         * @param {Object} index iteration index
+         * @param {Integer} index iteration index
          * @param {Object} value can be part of a link url (like "/foo/foo1") but also a jQuery selector
          */
         var makeDynamicElements = function (index, value) {
@@ -131,13 +131,14 @@ jQuery.collective_navigationtoggle = {
                 if ($.collective_navigationtoggle.toggleContainerClasses) {
                     elements = $([]);
                     $.each($.collective_navigationtoggle.toggleContainerClasses, function (index, cssClass) {
-                        elements = elements.add("." + cssClass + " a[href$=" + value + "]");
+                        elements = elements.add("." + cssClass + " a[href$='" + escape(value) + "']");
                     });
                 } else {
-                    elements = $("a[href$=" + value + "]");
+                    elements = $("a[href$='" + escape(value) + "']");
                 }
+				console.log(escape(value));console.log(elements);
             }
-    
+
             elements.each(function () {
                 var control = $(this);
                 var main_elem = control.closest($.collective_navigationtoggle.listItem);
@@ -146,7 +147,7 @@ jQuery.collective_navigationtoggle = {
                 }
                 // mark this element to prevent further call to makeDynamicElements
                 main_elem.data('cnavMarker', true);
-                var wrapDiv = control.parent().is('div'); // For handle Plone3.5 and 4 theme difference
+                var wrapDiv = control.parent().is('div'); // For handle Plone3.3 and 4 theme difference
                 var ul_model = main_elem.closest($.collective_navigationtoggle.listType).clone(false).addClass('cnavGenerated').empty();
                 var a_model = main_elem.find('a');
                 var li_model = main_elem.clone(false).empty();

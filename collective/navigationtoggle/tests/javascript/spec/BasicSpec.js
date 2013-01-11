@@ -41,4 +41,12 @@ describe("Basic toggle navigation features", function() {
 		expect($.getJSON.mostRecentCall.args[1]['path']).toEqual("/Plone/test");
 	});
 
+	it("should pass parameters related to \"/test folder\" (with whitespaces)", function() {
+		spyOn($, "getJSON");
+		$.collective_navigationtoggle.toggle_elements.push('/test folder')
+		$(document).trigger('checkDOM');
+		$('#test1 .navTree .cnavClosed a').click();
+		expect($.getJSON.mostRecentCall.args[1]['path']).toEqual("/Plone/test%20folder");
+	});
+
 });

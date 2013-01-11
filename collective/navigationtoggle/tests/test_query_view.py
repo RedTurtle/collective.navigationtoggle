@@ -42,6 +42,16 @@ class TestQueryView(unittest.TestCase):
         self._create(portal.section.subsection, type_name='Document', id='home', title='Subsection homepage')
         self.view = getMultiAdapter((portal, request), name=u"query-subelements")
 
+    def test_basic_query(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.form['path'] = '/section'
+        results = json.loads(self.view())
+        self.assertEqual(len(results), 3)
+        self.assertEqual(results[0]['title'], u'Sub section')
+        self.assertEqual(results[1]['title'], u'Section homepage')
+        self.assertEqual(results[2]['title'], u'A document')
+
     def test_default_page_not_returned(self):
         portal = self.layer['portal']
         request = self.layer['request']
@@ -91,4 +101,15 @@ class TestQueryView(unittest.TestCase):
         self.assertEqual(len(results), 2)
         self.assertEqual(results[0]['title'], u'Sub section')
         self.assertEqual(results[1]['title'], u'Section homepage')
+
+    def test_whitespaces(self):
+        # see https://github.com/RedTurtle/collective.navigationtoggle/issues/2
+        portal = self.layer['portal']
+        request = self.layer['request']
+        self._create(portal.section.subsection, type_name='Document', id='evil doc', title='With whitespaces')
+        request.form['path'] = '/section/subsection'
+        results = json.loads(self.view())
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0]['title'], u'Subsection homepage')
+        self.assertEqual(results[1]['title'], u'With whitespaces')
 

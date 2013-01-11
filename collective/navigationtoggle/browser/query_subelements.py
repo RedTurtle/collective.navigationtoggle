@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from urllib import unquote
+
 try:
     # python2.6
     import json
@@ -36,7 +38,7 @@ class QuerySubelementsView(BrowserView):
         metaTypesNotToList = getToolByName(context, 'portal_properties').navtree_properties.metaTypesNotToList;
         portal = portal_url.getPortalObject()
         
-        path = request.form.get('path', '')
+        path = unquote(request.form.get('path', ''))
         if not path:
             return ""
         path = path.replace(portal_url(), "")

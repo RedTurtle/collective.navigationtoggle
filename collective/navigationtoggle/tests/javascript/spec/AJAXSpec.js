@@ -9,15 +9,52 @@ describe("AJAX related toggle navigation features", function() {
 		$.collective_navigationtoggle.cache = true;
 		spyOn($, "getJSON").andCallFake(function(query, params, callback) {
 			count_call++;
-			if (params['path']=='/Plone/test') {
-				var data = [{"review_state_normalized": "published", "description": "", "type_normalized": "document", "url": "/Plone/test/pagina-2", "title": "Pagina 2", "type": "Document", "icon": "/Plone/"},
-				            {"review_state_normalized": "published", "description": "", "type_normalized": "folder", "url": "/Plone/test/subtest", "title": "Subtest", "type": "Folder", "icon": "/Plone/"}];
+			if (params['path'] == '/Plone/test') {
+				var data = [{
+					"review_state_normalized": "published",
+					"description": "",
+					"type_normalized": "document",
+					"url": "/Plone/test/pagina-2",
+					"title": "Pagina 2",
+					"type": "Document",
+					"icon": "/Plone/"
+				}, {
+					"review_state_normalized": "published",
+					"description": "",
+					"type_normalized": "folder",
+					"url": "/Plone/test/subtest",
+					"title": "Subtest",
+					"type": "Folder",
+					"icon": "/Plone/"
+				}];
 				callback(data);
-			} else if (params['path']=='/Plone/test/subtest') {
-				var data = [{"review_state_normalized": "published", "description": "", "type_normalized": "link", "url": "/Plone/test/subtest/repubblica", "title": "Repubblica", "type": "Link", "icon": "/Plone/"}];
-				callback(data);
-			};
-
+			}
+			else 
+				if (params['path'] == '/Plone/test/subtest') {
+					var data = [{
+						"review_state_normalized": "published",
+						"description": "",
+						"type_normalized": "link",
+						"url": "/Plone/test/subtest/repubblica",
+						"title": "Repubblica",
+						"type": "Link",
+						"icon": "/Plone/"
+					}];
+					callback(data);
+				}
+				else 
+					if (params['path'] == '/Plone/test%20folder') {
+						var data = [{
+							"review_state_normalized": "published",
+							"description": "",
+							"type_normalized": "document",
+							"url": "/Plone/test%20folder/pagina-3",
+							"title": "Pagina 2",
+							"type": "Document",
+							"icon": "/Plone/"
+						}];
+						callback(data);
+					}
 		});
 	});
 	
@@ -33,6 +70,15 @@ describe("AJAX related toggle navigation features", function() {
 		var subelements = $('#test1 .navTree .cnavOpen .navTreeLevel1 a');
 		expect($(subelements[0]).attr('href')).toEqual('/Plone/test/pagina-2');
 		expect($(subelements[1]).attr('href')).toEqual('/Plone/test/subtest');
+	});
+
+	it("should populate with sub objects (whitespace ids supported)", function() {
+		$.collective_navigationtoggle.toggle_elements.push('/test folder');
+		$(document).trigger('checkDOM');
+		$('#test1 .navTree .cnavClosed a').click();
+		expect($('#test1 .navTree .cnavOpen .navTreeLevel1').length).toEqual(1);
+		var subelements = $('#test1 .navTree .cnavOpen .navTreeLevel1 a');
+		expect($(subelements[0]).attr('href')).toEqual('/Plone/test%20folder/pagina-3');
 	});
 
 	it("should manage caching of sub objects", function() {
@@ -58,7 +104,7 @@ describe("AJAX related toggle navigation features", function() {
 		expect(count_call).toBe(1);
 	});
 
-	it("should populate sub objects and oobjects inside suobjects", function() {
+	it("should populate sub objects and oobjects inside subojects", function() {
 		$.collective_navigationtoggle.toggle_elements.push('/test');
 		$.collective_navigationtoggle.toggle_elements.push('/test/subtest');
 		$(document).trigger('checkDOM');
