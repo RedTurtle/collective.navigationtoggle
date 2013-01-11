@@ -76,7 +76,7 @@ jQuery.collective_navigationtoggle = {
          */
         var makeSubelement = function (data, wrapper, withImage, wrapDiv, reviewStateClass, contentTypeClass) {
             var newE = $('<a href="' + data.url + '" title="' + data.description + '">' +
-                    (withImage ? '<img alt="' + data.type + '" width="16" height="16" src="' + data.icon + '"/>' : '') +
+                    (withImage ? '<img alt="' + data.type + '" width="16" height="16" src="' + data.icon + '"/>&nbsp;' : '') +
                     '<span>' + data.title + '</span></a>');
             if (reviewStateClass) {
                 newE.addClass("state-" + data.review_state_normalized);
@@ -136,7 +136,6 @@ jQuery.collective_navigationtoggle = {
                 } else {
                     elements = $("a[href$='" + escape(value) + "']");
                 }
-				console.log(escape(value));console.log(elements);
             }
 
             elements.each(function () {
@@ -239,7 +238,7 @@ jQuery.collective_navigationtoggle = {
                              'foo': loading_time}, // for cache prevention management
                             function (data) {
                                 $.each(data, function (index, value) {
-                                    new_ul.append(makeSubelement(value, li_model.clone(), $('img', control).length > 0,
+                                    new_ul.append(makeSubelement(value, li_model.clone(), value.icon,
                                                                  wrapDiv, reviewStateClass, contentTypeClass));
                                 });
                                 // If no element returned from the subtree, perform normal browser action

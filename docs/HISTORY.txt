@@ -6,8 +6,11 @@ Changelog
 
 - fixed a bug when used with containers with spaces inside the id
   (close `#2`__) [keul]
+- file icon of generated elements where not handled in the right way
+  (close `#3`__) [keul]
 
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/2
+  __ https://github.com/RedTurtle/collective.navigationtoggle/issues/3
 
 0.4.0 (2012-11-15)
 ------------------

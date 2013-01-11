@@ -56,8 +56,7 @@ class QuerySubelementsView(BrowserView):
                                  'type': x.portal_type,
                                  'type_normalized': ptool.normalizeString(x.portal_type),
                                  'review_state_normalized': ptool.normalizeString(x.review_state),
-                                 'icon': "%s/%s" % (portal_url(), x.getIcon),
+                                 'icon': x.getIcon and "%s/%s" % (portal_url(), x.getIcon) or None,
                                  'description': x.Description,
                                  })
-
         return json.dumps(navElems)
