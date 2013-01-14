@@ -89,9 +89,17 @@ From this section you can configure a lot of advanced options, mainly you need t
     
     Commonly only link inside navigation portlet are checked (see the "*Toggle container classes*").
     
-    You can also provide here a complex jQuery expression (for example: "``li.navTreeItem a``").
+    You can also provide here a complex jQuery expression, for example::
+    
+        li.navTreeItem a
+    
     If you don't directly provide a selector that match an HTML <A> element, you still need to query for something
-    *inside* that kind of node.
+    *inside* that kind of node, for example::
+    
+        li.navTreeItem a.contenttype-folder span
+    
+    In the last example above, only a click of the navigation entry text will trigger the expand/collapse features,
+    while clicking on the icon will keep the default browser behavior.
 
 **Animation delay**
     The product can enable for you a graphical effect when you expand/collapse items. This is disabled by
