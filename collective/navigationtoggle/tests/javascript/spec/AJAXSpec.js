@@ -55,7 +55,13 @@ describe("AJAX related toggle navigation features", function() {
 						}];
 						callback(data);
 					}
+				else 
+					if (params['path'] == '/Plone/test-empty') {
+						var data = [];
+						callback(data);
+					}
 		});
+		spyOn($.collective_navigationtoggle, '_goTo');
 	});
 	
 	afterEach(function() {
@@ -153,5 +159,18 @@ describe("AJAX related toggle navigation features", function() {
 		expect(count_call).toBe(4);
 	});
 
+	it("should go to link HREF if folder is empty", function() {
+		$.collective_navigationtoggle.toggle_elements.push('/Plone/test-empty');
+		$(document).trigger('checkDOM');
+		$('#test1 .navTree .section-test-empty a').click();
+		expect($.collective_navigationtoggle._goTo).toHaveBeenCalledWith("/Plone/test-empty");
+	});
+
+	it("should go to link HREF if folder is empty and selector match a link's inner node", function() {
+		$.collective_navigationtoggle.toggle_elements.push('li.navTreeItem a.contenttype-folder span');
+		$(document).trigger('checkDOM');
+		$('#test1 .navTree .section-test-empty a span').click();
+		expect($.collective_navigationtoggle._goTo).toHaveBeenCalledWith("/Plone/test-empty");
+	});
 
 });

@@ -38,7 +38,14 @@ jQuery.collective_navigationtoggle = {
      * What kind of item must contain the link?
      */
     listType: 'ul',
-    listItem: 'li'
+    listItem: 'li',
+	
+	/**
+	 * For testing purpose, just wrap the window.location.href call
+	 */
+	_goTo: function(url) {
+		window.location.href = url;
+	}
 };
 
 (function ($) {
@@ -243,7 +250,16 @@ jQuery.collective_navigationtoggle = {
                                 });
                                 // If no element returned from the subtree, perform normal browser action
                                 if ($($.collective_navigationtoggle.listItem, new_ul).length === 0) {
-                                    window.location.href = control.attr('href');
+									var static_href = null;
+									if (control.is('a')) {
+										static_href = control.attr('href');
+									} else {
+										// in the control is not on a link, let's twy to see in is contained in a link
+										static_href = control.closest('a').attr('href');
+									}
+                                    if (static_href) {
+										$.collective_navigationtoggle._goTo(static_href);
+									}
                                     return;
                                 }
                                 // I call this to obtain something like jQuery.live() feature...

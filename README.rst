@@ -90,6 +90,8 @@ From this section you can configure a lot of advanced options, mainly you need t
     Commonly only link inside navigation portlet are checked (see the "*Toggle container classes*").
     
     You can also provide here a complex jQuery expression (for example: "``li.navTreeItem a``").
+    If you don't directly provide a selector that match an HTML <A> element, you still need to query for something
+    *inside* that kind of node.
 
 **Animation delay**
     The product can enable for you a graphical effect when you expand/collapse items. This is disabled by
