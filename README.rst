@@ -195,11 +195,6 @@ will probably cache.
 
 When changing configuration you can use the "*Save and invalidate JS cache*" button.
 
-TODO
-====
-
-* Change global configuration settings to be different for every navigation
-
 Other products
 ==============
 
