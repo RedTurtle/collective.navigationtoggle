@@ -35,7 +35,9 @@ class QuerySubelementsView(BrowserView):
         portal_url = getToolByName(context, 'portal_url')
         catalog = getToolByName(context, 'portal_catalog')
         ptool = getToolByName(context, 'plone_utils')
-        metaTypesNotToList = getToolByName(context, 'portal_properties').navtree_properties.metaTypesNotToList;
+        portal_properties = getToolByName(context, 'portal_properties')
+        metaTypesNotToList = portal_properties.navtree_properties.metaTypesNotToList
+        typesUseViewActionInListings = portal_properties.site_properties.typesUseViewActionInListings
         portal = portal_url.getPortalObject()
         
         path = unquote(request.form.get('path', ''))
@@ -52,7 +54,8 @@ class QuerySubelementsView(BrowserView):
         for x in results:
             if not x.exclude_from_nav and x.portal_type not in metaTypesNotToList:
                 navElems.append({'title': x.Title,
-                                 'url': x.getURL(),
+                                 'url': x.portal_type in typesUseViewActionInListings \
+                                            and "%s/view" % x.getURL() or x.getURL(),
                                  'type': x.portal_type,
                                  'type_normalized': ptool.normalizeString(x.portal_type),
                                  'review_state_normalized': ptool.normalizeString(x.review_state),

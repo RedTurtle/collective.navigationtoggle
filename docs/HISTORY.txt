@@ -13,11 +13,14 @@ Changelog
 - now general selectors can match also elements that are not <a>, but
   link's contents
   (close `#4`__) [keul]
+- now checking the ``typesUseViewActionInListings`` configuration
+  (close `#5`__) [keul]
 
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/2
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/3
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/1
   __ https://github.com/RedTurtle/collective.navigationtoggle/issues/4
+  __ https://github.com/RedTurtle/collective.navigationtoggle/issues/5
 
 0.4.0 (2012-11-15)
 ------------------

@@ -113,3 +113,14 @@ class TestQueryView(unittest.TestCase):
         self.assertEqual(results[0]['title'], u'Subsection homepage')
         self.assertEqual(results[1]['title'], u'With whitespaces')
 
+    def test_typesUseViewActionInListings(self):
+        # see https://github.com/RedTurtle/collective.navigationtoggle/issues/5
+        portal = self.layer['portal']
+        portal.portal_properties.site_properties.typesUseViewActionInListings = ['Document',]
+        request = self.layer['request']
+        self._create(portal.section.subsection, type_name='News Item', id='a-news', title='An internal news')
+        request.form['path'] = '/section/subsection'
+        results = json.loads(self.view())
+        self.assertEqual(results[0]['url'], u"%s/section/subsection/home/view" % portal.absolute_url())
+        self.assertEqual(results[1]['url'], u"%s/section/subsection/a-news" % portal.absolute_url())
+        
