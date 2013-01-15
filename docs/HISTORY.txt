@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.0 (unreleased)
+1.0.0 (2013-01-15)
 ------------------
 
 - fixed a bug when used with containers with spaces inside the id
