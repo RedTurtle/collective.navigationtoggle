@@ -53,7 +53,7 @@ class QuerySubelementsView(BrowserView):
         navElems = []
         for x in results:
             if not x.exclude_from_nav and x.portal_type not in metaTypesNotToList:
-                navElems.append({'title': x.Title,
+                navElems.append({'title': x.Title or x.id,
                                  'url': x.portal_type in typesUseViewActionInListings \
                                             and "%s/view" % x.getURL() or x.getURL(),
                                  'type': x.portal_type,
