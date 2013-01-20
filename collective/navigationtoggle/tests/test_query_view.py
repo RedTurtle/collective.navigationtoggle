@@ -124,3 +124,14 @@ class TestQueryView(unittest.TestCase):
         self.assertEqual(results[0]['url'], u"%s/section/subsection/home/view" % portal.absolute_url())
         self.assertEqual(results[1]['url'], u"%s/section/subsection/a-news" % portal.absolute_url())
         
+    def test_prettyTitleOrId(self):
+        # see https://github.com/RedTurtle/collective.navigationtoggle/issues/6
+        portal = self.layer['portal']
+        request = self.layer['request']
+        self._create(portal.section.subsection, type_name='Document', id='IHaveAPrettyID', title='')
+        request.form['path'] = '/section/subsection'
+        results = json.loads(self.view())
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0]['title'], u'Subsection homepage')
+        self.assertEqual(results[1]['title'], u'IHaveAPrettyID')
+
