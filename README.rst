@@ -237,3 +237,4 @@ This product was developed by RedTurtle Technology team.
    :alt: RedTurtle Technology Site
    :target: http://www.redturtle.it/
 
+Special thanks to Yang Hong for massive bug fixing.
