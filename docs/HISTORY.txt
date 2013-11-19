@@ -4,8 +4,8 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- fixed a bug in @@query-subelements when using the product in a Plone site that's inside 
+  another folder (filesystem, for example) [mpampols]
 
 1.0.1 (2013-01-24)
 ------------------
