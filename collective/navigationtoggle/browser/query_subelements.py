@@ -44,7 +44,7 @@ class QuerySubelementsView(BrowserView):
         if not path:
             return ""
         path = path.replace(portal_url(), "")
-        path = "/%s%s" % (portal.getId(), path)
+        path = "%s%s" % (portal_url.getPortalPath(), path)
         
         results = catalog(path={'query': path, 'depth': 1},
                           is_default_page=False,
