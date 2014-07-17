@@ -6,7 +6,7 @@ Introduction
 Scope of this product is to make possible an expand/collapse feature in Plone navigation(s)
 portlet without any modification to the navigation code itself, or any needs to override its features.
 
-This product *is not* a new navigation portlet, is just a Javascript add-on that rely on native Plone's
+This product *is not* a new navigation portlet, is just a JavaScript add-on that rely on native Plone's
 `jQuery`__ support.
 
 __ http://jquery.com/
