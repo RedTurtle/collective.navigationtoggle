@@ -35,7 +35,7 @@ class JavaScript(BrowserView):
         
         outstr_links = ""
         for selector in settings.selectors:
-            outstr_links += self.JS_MODEL % selector + '\n' 
+            outstr_links += self.JS_MODEL % selector.replace('"', '\\"') + '\n' 
         
         return self.JS_LITERAL % (outstr_config, outstr_links)
 

@@ -78,4 +78,8 @@ class TestConfigurationJSView(unittest.TestCase):
         self.assertTrue('jQuery.collective_navigationtoggle.toggle_elements.push("/foo");' in self.view())
         self.assertTrue('jQuery.collective_navigationtoggle.toggle_elements.push("/bar");' in self.view())
 
-
+    def test_toggle_elements_with_quoting(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        self.settings.selectors = (u'a[href="/aaa/bbb/ccc"]', )
+        self.assertTrue('jQuery.collective_navigationtoggle.toggle_elements.push("a[href=\\"/aaa/bbb/ccc\\"]");' in self.view())

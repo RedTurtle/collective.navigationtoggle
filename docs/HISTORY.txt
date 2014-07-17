@@ -6,6 +6,8 @@ Changelog
 
 - fixed a bug in @@query-subelements when using the product in a Plone site that's inside 
   another folder (filesystem, for example) [mpampols]
+- fixed a bug that badly put rules inside the generated ``collective.navigationtoggle.rules.js``
+  if they contains a quote char [keul]
 
 1.0.1 (2013-01-24)
 ------------------
