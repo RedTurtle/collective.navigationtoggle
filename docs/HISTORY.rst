@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.2 (unreleased)
+1.0.2 (2014-07-17)
 ------------------
 
 - fixed a bug in @@query-subelements when using the product in a Plone site that's inside 
