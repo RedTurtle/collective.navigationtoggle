@@ -38,7 +38,6 @@ class QuerySubelementsView(BrowserView):
         portal_properties = getToolByName(context, 'portal_properties')
         metaTypesNotToList = portal_properties.navtree_properties.metaTypesNotToList
         typesUseViewActionInListings = portal_properties.site_properties.typesUseViewActionInListings
-        portal = portal_url.getPortalObject()
         
         path = unquote(request.form.get('path', ''))
         if not path:

@@ -8,16 +8,12 @@ except ImportError:
     import simplejson as json
 
 import unittest
-
+from collective.navigationtoggle.interfaces import INavigationToggleLayer
+from collective.navigationtoggle.testing import NAVIGATION_TOGGLE_INTEGRATION_TESTING
+from plone.app.testing import logout
 from zope import interface
 from zope.component import getMultiAdapter
 
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import logout
-
-from collective.navigationtoggle.interfaces import INavigationToggleLayer
-from collective.navigationtoggle.testing import NAVIGATION_TOGGLE_INTEGRATION_TESTING
 
 class TestQueryView(unittest.TestCase):
 
@@ -43,7 +39,6 @@ class TestQueryView(unittest.TestCase):
         self.view = getMultiAdapter((portal, request), name=u"query-subelements")
 
     def test_basic_query(self):
-        portal = self.layer['portal']
         request = self.layer['request']
         request.form['path'] = '/section'
         results = json.loads(self.view())
