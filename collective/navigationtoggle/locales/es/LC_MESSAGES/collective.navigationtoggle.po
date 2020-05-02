@@ -1,0 +1,132 @@
+# Translation of collective.navigationtoggle.pot to Spanish
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.navigationtoggle\n"
+"POT-Creation-Date: 2020-05-02 11:42+0000\n"
+"PO-Revision-Date: 2020-05-02 07:41-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.navigationtoggle\n"
+"Language: es\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+
+#: ../interfaces.py:30
+msgid "Animation delay"
+msgstr "Retraso en la animación"
+
+#: ../interfaces.py:41
+msgid "Cache"
+msgstr "Caché"
+
+#: ../browser/controlpanel.py:36
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../browser/controlpanel.py:32
+msgid "Changes saved"
+msgstr "Cambios guardados"
+
+#: ../browser/controlpanel.py:38
+msgid "Edit cancelled"
+msgstr "Cambios cancelados"
+
+#: ../interfaces.py:71
+msgid "HTML list element"
+msgstr "Elemento lista HTML"
+
+#: ../interfaces.py:62
+msgid "HTML list type"
+msgstr "Tipo de lista HTML"
+
+#: ../browser/controlpanel.py:48
+msgid "JavaScript registry invalidated"
+msgstr "Registro JavaScript invalidado"
+
+#: ../interfaces.py:16
+msgid "Link selectors"
+msgstr "Selectores de enlaces"
+
+#: ../configure.zcml:27
+msgid "Make specific Plone navigation portlet elements to be expandable/collapsible"
+msgstr "Hace que los elementos específicos del portlet de navegación de Plone sean expandibles/plegables"
+
+#: ../browser/controlpanel.py:21
+#: ../profiles/default/controlpanel.xml
+msgid "Navigation Toggle settings"
+msgstr "Configuración Alternancia de Navegación"
+
+#: ../configure.zcml:35
+msgid "Remove the collective.navigationtoggle package"
+msgstr "Eliminar el paquete collective.navigationtoggle"
+
+#: ../browser/controlpanel.py:25
+msgid "Save"
+msgstr "Guardar"
+
+#: ../browser/controlpanel.py:43
+msgid "Save and invalidate JS cache"
+msgstr "Guardar e invalidar caché JS"
+
+#: ../interfaces.py:50
+msgid "Toggle container classes"
+msgstr "Clases de contenedores para elementos de alternancia"
+
+#: ../configure.zcml:27
+msgid "collective.navigationtoggle"
+msgstr "collective.navigationtoggle"
+
+#. Default: "If provided, enable an animation when navigations are expanded/collapsed\n.Animation will require the given number of missilecons to be completed.\nLeave 0 to disable animation."
+#: ../interfaces.py:31
+msgid "help_animation_delay"
+msgstr ""
+"Si se proporciona, habilite una animación cuando las navegaciones se expandan/contraigan.\n"
+"La animación requerirá que se complete el número dado de misiles.\n"
+"Deje 0 para deshabilitar la animación."
+
+#. Default: "Cache result of the opened navigation when it's expanded."
+#: ../interfaces.py:42
+msgid "help_client_cache"
+msgstr "Mantenga el resultado en caché cuando abra el navegador cuando esté expandido."
+
+#. Default: "Make those navigation links able to expand/collapse.\nYou can provide the URL relative path (omitting the site id) - e.g: \"/folder/subfolder\".\nYou can also provide a standard jQuery selector expression (see http://api.jquery.com/category/selectors)."
+#: ../interfaces.py:17
+msgid "help_link_selectors"
+msgstr ""
+"Haga que esos enlaces de navegación puedan expandirse/contraerse.\n"
+"Puede proporcionar la ruta relativa de la URL (omitiendo la identificación del sitio), por ejemplo: \"/carpeta/subcarpeta\".\n"
+"También puede proporcionar una expresión de selector jQuery estándar (consulte http://api.jquery.com/category/selectors)."
+
+#. Default: "The item of a single list entry to looks for inside navigations.\nThis is the element that the toggle feature will generate when expandig."
+#: ../interfaces.py:72
+msgid "help_list_item"
+msgstr ""
+"El elemento de un único elemento de la lista para buscar navegaciones internas.\n"
+"Este es el elemento que generará la función de alternar al expandirse"
+
+#. Default: "The type of list element to looks for inside navigation(s).\nThis is the element that the toggle feature will try to clone."
+#: ../interfaces.py:63
+msgid "help_list_type"
+msgstr ""
+"El tipo de elemento de lista que se busca dentro de la(s) navegación(ones).\n"
+"Este es el elemento que la función de alternar intentará clonar."
+
+#. Default: "Manage on which elements the navigation toggle must be activated"
+#: ../browser/controlpanel.py:22
+msgid "help_navigationtoggle_settings_editform"
+msgstr "Administre en qué elementos debe activarse la palanca de navegación"
+
+#. Default: "Looks only for links inside HTML elements with those CSS classes.\nNote that this option is used only if you provided toggle links as normal URL path (not for complex jQuery expressions)."
+#: ../interfaces.py:51
+msgid "help_toggle_container_class"
+msgstr ""
+"Solo busca enlaces dentro de elementos HTML con esas clases CSS.\n"
+"Tenga en cuenta que esta opción se usa solo si proporciona enlaces de alternancia como ruta URL normal (no para expresiones complejas de jQuery)."
