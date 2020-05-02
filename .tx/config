@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[plone-collective.collective-navigationtoggle-pot]
+file_filter = collective/navigationtoggle/locales/<lang>/LC_MESSAGES/collective.navigationtoggle.po
+minimum_perc = 0
+source_file = collective/navigationtoggle/locales/collective.navigationtoggle.pot
+source_lang = en
+type = PO
