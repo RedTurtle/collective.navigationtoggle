@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-11 13:51+0000\n"
+"POT-Creation-Date: 2020-05-02 11:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,7 @@ msgstr "Registro JavaScript invalidato"
 msgid "Link selectors"
 msgstr "Selettori dei link"
 
+#: ../configure.zcml:27
 msgid "Make specific Plone navigation portlet elements to be expandable/collapsible"
 msgstr "Rende specifici elementi delle portlet di navigazione Plone espandibili/collassabili"
 
@@ -60,6 +61,10 @@ msgstr "Rende specifici elementi delle portlet di navigazione Plone espandibili/
 #: ../profiles/default/controlpanel.xml
 msgid "Navigation Toggle settings"
 msgstr "Impostazioni Navigation Toggle"
+
+#: ../configure.zcml:35
+msgid "Remove the collective.navigationtoggle package"
+msgstr ""
 
 #: ../browser/controlpanel.py:25
 msgid "Save"
@@ -72,6 +77,10 @@ msgstr "Salva e invalida cache JS"
 #: ../interfaces.py:50
 msgid "Toggle container classes"
 msgstr "Classi dei contenitori per elementi toggle"
+
+#: ../configure.zcml:27
+msgid "collective.navigationtoggle"
+msgstr ""
 
 #. Default: "If provided, enable an animation when navigations are expanded/collapsed\n.Animation will require the given number of missilecons to be completed.\nLeave 0 to disable animation."
 #: ../interfaces.py:31
@@ -119,4 +128,3 @@ msgid "help_toggle_container_class"
 msgstr ""
 "Considera solo link dentro ad elementi HTML con queste classi CSS.\n"
 "Nota che questa impostazione è usata solo se hai utilizzato link come normali percorsi di URL (non per complesse espressioni jQuery)."
-

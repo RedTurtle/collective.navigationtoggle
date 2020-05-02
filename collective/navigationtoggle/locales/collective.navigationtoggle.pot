@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-11 13:51+0000\n"
+"POT-Creation-Date: 2020-05-02 11:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,12 +53,17 @@ msgstr ""
 msgid "Link selectors"
 msgstr ""
 
+#: ../configure.zcml:27
 msgid "Make specific Plone navigation portlet elements to be expandable/collapsible"
 msgstr ""
 
 #: ../browser/controlpanel.py:21
 #: ../profiles/default/controlpanel.xml
 msgid "Navigation Toggle settings"
+msgstr ""
+
+#: ../configure.zcml:35
+msgid "Remove the collective.navigationtoggle package"
 msgstr ""
 
 #: ../browser/controlpanel.py:25
@@ -71,6 +76,10 @@ msgstr ""
 
 #: ../interfaces.py:50
 msgid "Toggle container classes"
+msgstr ""
+
+#: ../configure.zcml:27
+msgid "collective.navigationtoggle"
 msgstr ""
 
 #. Default: "If provided, enable an animation when navigations are expanded/collapsed\n.Animation will require the given number of missilecons to be completed.\nLeave 0 to disable animation."
@@ -107,4 +116,3 @@ msgstr ""
 #: ../interfaces.py:51
 msgid "help_toggle_container_class"
 msgstr ""
-
