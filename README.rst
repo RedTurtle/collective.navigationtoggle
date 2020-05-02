@@ -61,7 +61,7 @@ A second click will collapse the section.
 Default page in a folder, elements marked with "*Exclude from navigation*" and unwanted
 type from the ``metaTypesNotToList`` property will be excluded.
 
-The script try to simulate best at possible a normal portlet navigation behaviour.
+The script try to simulate best at possible a normal portlet navigation behavior.
 
 The code keeps in mind *graceful degradation*. Browser without JavaScript enabled will simply use basic
 Plone navigation features.
@@ -106,7 +106,7 @@ From this section you can configure a lot of advanced options, mainly you need t
     default.
 
     To enable it you must change this value to something higher that 0. The value you put there is the time
-    (in millisec) used for the `slideDown`__ and `slideUp`__ jQuery's effect.
+    (in millisecond) used for the `slideDown`__ and `slideUp`__ jQuery's effect.
 
     __ http://api.jquery.com/slideDown/
     __ http://api.jquery.com/slideUp/
@@ -136,7 +136,7 @@ Advanced configurations
 Styles
 ------
 
-This products dinamically adds two new possible CSS classes to ``<li>`` elements that contains links that match
+This products dynamically adds two new possible CSS classes to ``<li>`` elements that contains links that match
 the configuration.
 
 Class "*cnavClosed*" is added when a special navigation elements is shown on the page and when you close
@@ -153,7 +153,7 @@ Not standard navigation (...or portlet... or whatever you want)
 ---------------------------------------------------------------
 
 This products *may* also works on non-standard navigation HTML structure (as the generations on subelement
-is done cloning existings node from the same navigation portlet) but some assumptions are done.
+is done cloning existing node from the same navigation portlet) but some assumptions are done.
 
 As the code works almost client side, you can also use it in portlets that are not standard navigation.
 Theoretically you can use it with something that is not even a portlet!
