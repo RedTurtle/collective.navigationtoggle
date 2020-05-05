@@ -4,8 +4,9 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- added Transifex.net service integration to manage the translation process [macagua]
+- added Spanish translation [macagua]
+- updated gettext files support [macagua]
 
 1.0.2 (2014-07-17)
 ------------------
