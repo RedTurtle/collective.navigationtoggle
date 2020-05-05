@@ -1,5 +1,6 @@
 include *.rst
-recursive-include .tx
+include .tx
+include .tx/config
 recursive-include docs *
 recursive-include collective *
 
