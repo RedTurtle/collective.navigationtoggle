@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.3 (unreleased)
+1.0.3 (2020-05-05)
 ------------------
 
 - added Transifex.net service integration to manage the translation process [macagua]

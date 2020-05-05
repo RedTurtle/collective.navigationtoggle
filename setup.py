@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import os
 import sys
 
-version = '1.0.3.dev0'
+version = '1.0.3'
 
 install_requires = ['setuptools',
                     'Plone',
